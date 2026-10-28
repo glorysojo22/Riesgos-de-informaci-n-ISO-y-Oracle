@@ -1,5 +1,7 @@
 # Controles ISO/IEC 27001:2022 para la confidencialidad en la administración de bases de datos
 
+**Artefacto en línea:** https://glorysojo22.github.io/Riesgos-de-informaci-n-ISO-y-Oracle/
+
 Proyecto del curso **Administración de Bases de Datos** · Escuela de Informática, Universidad Nacional · II Ciclo 2026
 Profesor: Johnny Villalobos Murillo · Estudiante: **Gloriana Sojo Pereira**
 
@@ -21,14 +23,19 @@ La empresa **Tres Patitos es ficticia**: sus evaluaciones son simulaciones solic
 ## Contenido
 
 ```
-artefacto/index.html      Copia local del artefacto web (las evaluaciones se guardan solo en el navegador)
+index.html                Redirige al artefacto (dirección principal de GitHub Pages)
+artefacto/index.html      Artefacto web
 informe/                  Informe final en PDF y declaración jurada de uso de IA
 scripts/                  Scripts SQL de verificación, implementación y pruebas
 evidencias/real/          Salidas reales de los scripts en Oracle 21c XE
 evidencias/simulada/      Evaluaciones simuladas de Tres Patitos
 ```
 
-La versión publicada del artefacto, con las evaluaciones compartidas, está en el enlace entregado al profesor.
+## Cómo funciona el artefacto
+
+El artefacto abre con las cuatro evaluaciones de la tabla de resultados ya cargadas, con sus criterios, evidencias y archivos adjuntos. Cada persona que lo abre puede registrar evaluaciones nuevas en la pestaña **Matriz**. Esas evaluaciones se guardan **solo en su propio navegador** (`localStorage`): no se comparten con otras personas ni modifican el repositorio. Si se borran los datos del navegador, el artefacto vuelve a las cuatro evaluaciones originales.
+
+También se puede abrir sin conexión, con doble clic en `artefacto/index.html`.
 
 ## Orden de ejecución de los scripts
 
