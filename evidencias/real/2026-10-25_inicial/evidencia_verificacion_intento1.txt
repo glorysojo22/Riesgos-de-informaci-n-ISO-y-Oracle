@@ -1,0 +1,435 @@
+============================================================
+PT-00 Ambiente de pruebas
+Esperado: versión, contenedor XEPDB1 y paquetes disponibles
+============================================================
+
+BANNER_FULL
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
+Version 21.3.0.0.0
+
+
+1 fila seleccionada.
+
+
+CONTENEDOR
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+USUARIO
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FECHA_EJECUCION
+-------------------------------------
+XEPDB1
+AUDITOR_EXT
+24/10/26 12:58:23,483000000 PM -06:00
+
+
+1 fila seleccionada.
+
+
+PAQUETE_DISPONIBLE
+--------------------------------------------------------------------------------------------------------------------------------
+DBMS_PRIVILEGE_CAPTURE
+DBMS_REDACT
+DBMS_RLS
+DBMS_TSDP_MANAGE
+
+4 filas seleccionadas.
+
+
+PARAMETER                                                        VALUE
+---------------------------------------------------------------- ----------------------------------------------------------------
+Unified Auditing                                                 FALSE
+
+1 fila seleccionada.
+
+============================================================
+PT-01 (CO-01, A5.12) Columnas sensibles etiquetadas
+Esperado: coinciden con el inventario documentado
+============================================================
+
+OWNER
+--------------------------------------------------------------------------------------------------------------------------------
+TABLE_NAME
+--------------------------------------------------------------------------------------------------------------------------------
+COLUMN_NAME
+--------------------------------------------------------------------------------------------------------------------------------
+RRHH
+EMPLEADOS
+CEDULA
+
+RRHH
+EMPLEADOS
+SALARIO
+
+
+2 filas seleccionadas.
+
+============================================================
+PT-02 (CO-02, A5.15) Privilegios directos a usuarios en esquemas sensibles
+Esperado: 0 filas
+============================================================
+
+0 filas seleccionadas.
+
+============================================================
+PT-03 (CO-03, A5.16) Cuentas abiertas sin acceso en 90 días
+Esperado: 0 filas (además, cruzar DBA_USERS con la planilla)
+============================================================
+
+USERNAME                                                                                                                         ACCOUNT_STATUS                   LAST_LOGIN
+-------------------------------------------------------------------------------------------------------------------------------- -------------------------------- ---------------------------------------
+PDBADMIN                                                                                                                         OPEN
+PRUEBA                                                                                                                           OPEN
+RRHH                                                                                                                             OPEN
+PRUEBA_TI                                                                                                                        OPEN
+PRUEBA_CONTA                                                                                                                     OPEN
+
+5 filas seleccionadas.
+
+============================================================
+PT-04 (CO-04, A5.17) Cuentas abiertas con contraseña por defecto
+Esperado: 0 filas
+============================================================
+
+Error que empieza en la línea : 78 Archivo @ C:\evaluacion_oracle\01_verificacion_controles.sql
+del comando -
+SELECT d.username, u.account_status
+FROM dba_users_with_defpwd d
+JOIN dba_users u ON u.username = d.username
+WHERE u.account_status = 'OPEN'
+Error en la línea de comandos : 79 Columna : 6 Archivo @ C:\evaluacion_oracle\01_verificacion_controles.sql
+Informe de error -
+Error SQL: ORA-00942: la tabla o vista no existe
+
+https://docs.oracle.com/error-help/db/ora-00942/00942. 00000 -  "table or view%s does not exist"
+*Cause:    The specified table or view did not exist, or a synonym
+           pointed to a table or view that did not exist.
+           To find existing user tables and views, query the
+           ALL_TABLES and ALL_VIEWS data dictionary views. Certain
+           privileges may be required to access the table. If an
+           application returned this message, then the table that the
+           application tried to access did not exist in the database, or
+           the application did not have access to it.
+*Action:   Check each of the following
+           - The spelling of the table or view name is correct.
+           - The referenced table or view name does exist.
+           - The synonym points to an existing table or view.
+
+More Details :
+https://docs.oracle.com/error-help/db/ora-00942/
+============================================================
+PT-05 (CO-05, A5.18) Capturas de privilegios y privilegios no usados
+Esperado: al menos una captura; no usados revocados o justificados
+============================================================
+
+Error que empieza en la línea : 87 Archivo @ C:\evaluacion_oracle\01_verificacion_controles.sql
+del comando -
+SELECT name, type, enabled FROM dba_priv_captures
+Error en la línea de comandos : 87 Columna : 33 Archivo @ C:\evaluacion_oracle\01_verificacion_controles.sql
+Informe de error -
+Error SQL: ORA-00942: la tabla o vista no existe
+
+https://docs.oracle.com/error-help/db/ora-00942/00942. 00000 -  "table or view%s does not exist"
+*Cause:    The specified table or view did not exist, or a synonym
+           pointed to a table or view that did not exist.
+           To find existing user tables and views, query the
+           ALL_TABLES and ALL_VIEWS data dictionary views. Certain
+           privileges may be required to access the table. If an
+           application returned this message, then the table that the
+           application tried to access did not exist in the database, or
+           the application did not have access to it.
+*Action:   Check each of the following
+           - The spelling of the table or view name is correct.
+           - The referenced table or view name does exist.
+           - The synonym points to an existing table or view.
+
+More Details :
+https://docs.oracle.com/error-help/db/ora-00942/
+
+Error que empieza en la línea : 89 Archivo @ C:\evaluacion_oracle\01_verificacion_controles.sql
+del comando -
+SELECT username, sys_priv, obj_priv, object_owner, object_name
+FROM dba_unused_privs
+Error en la línea de comandos : 90 Columna : 6 Archivo @ C:\evaluacion_oracle\01_verificacion_controles.sql
+Informe de error -
+Error SQL: ORA-00942: la tabla o vista no existe
+
+https://docs.oracle.com/error-help/db/ora-00942/00942. 00000 -  "table or view%s does not exist"
+*Cause:    The specified table or view did not exist, or a synonym
+           pointed to a table or view that did not exist.
+           To find existing user tables and views, query the
+           ALL_TABLES and ALL_VIEWS data dictionary views. Certain
+           privileges may be required to access the table. If an
+           application returned this message, then the table that the
+           application tried to access did not exist in the database, or
+           the application did not have access to it.
+*Action:   Check each of the following
+           - The spelling of the table or view name is correct.
+           - The referenced table or view name does exist.
+           - The synonym points to an existing table or view.
+
+More Details :
+https://docs.oracle.com/error-help/db/ora-00942/
+============================================================
+PT-06 (CO-06, A5.33) Usuarios con DBA y AUDIT_ADMIN a la vez
+Esperado: 0 filas
+============================================================
+
+0 filas seleccionadas.
+
+============================================================
+PT-07 (CO-07, A8.2) Privilegios elevados
+Esperado: solo cuentas de la lista autorizada
+============================================================
+
+GRANTEE
+--------------------------------------------------------------------------------------------------------------------------------
+HR
+SYS
+SYSTEM
+
+3 filas seleccionadas.
+
+
+0 filas seleccionadas.
+
+
+USERNAME                                                                                                                         SYSDB SYSOP
+-------------------------------------------------------------------------------------------------------------------------------- ----- -----
+SYS                                                                                                                              TRUE  TRUE
+
+1 fila seleccionada.
+
+============================================================
+PT-08 (CO-08, A8.3) Políticas VPD en esquemas sensibles
+Esperado: todas con ENABLE = 'YES'
+============================================================
+
+0 filas seleccionadas.
+
+============================================================
+PT-09 (CO-09, A8.5) Política de contraseñas por perfil
+Esperado: FAILED_LOGIN_ATTEMPTS <= 5, PASSWORD_LIFE_TIME <= 90,
+función de verificación definida; 0 cuentas con perfil DEFAULT
+============================================================
+
+PROFILE                                                                                                                          RESOURCE_NAME
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------
+LIMIT
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+DEFAULT                                                                                                                          FAILED_LOGIN_ATTEMPTS
+10
+
+DEFAULT                                                                                                                          PASSWORD_LIFE_TIME
+UNLIMITED
+
+DEFAULT                                                                                                                          PASSWORD_LOCK_TIME
+1
+
+DEFAULT                                                                                                                          PASSWORD_VERIFY_FUNCTION
+NULL
+
+ORA_CIS_PROFILE                                                                                                                  FAILED_LOGIN_ATTEMPTS
+5
+
+ORA_CIS_PROFILE                                                                                                                  PASSWORD_LIFE_TIME
+90
+
+ORA_CIS_PROFILE                                                                                                                  PASSWORD_LOCK_TIME
+1
+
+ORA_CIS_PROFILE                                                                                                                  PASSWORD_VERIFY_FUNCTION
+ORA12C_VERIFY_FUNCTION
+
+ORA_STIG_PROFILE                                                                                                                 FAILED_LOGIN_ATTEMPTS
+3
+
+ORA_STIG_PROFILE                                                                                                                 PASSWORD_LIFE_TIME
+35
+
+ORA_STIG_PROFILE                                                                                                                 PASSWORD_LOCK_TIME
+UNLIMITED
+
+ORA_STIG_PROFILE                                                                                                                 PASSWORD_VERIFY_FUNCTION
+ORA12C_STIG_VERIFY_FUNCTION
+
+
+12 filas seleccionadas.
+
+
+USERNAME
+--------------------------------------------------------------------------------------------------------------------------------
+PDBADMIN
+MEX4
+HR
+MONITOR_USER
+TLD_USER
+AUDITOR_EXT
+UNIV_DB
+RRHH
+PRUEBA_TI
+PRUEBA_CONTA
+PRUEBA
+
+11 filas seleccionadas.
+
+============================================================
+PT-10 (CO-10, A8.10) Objetos de esquemas sensibles en la papelera
+Esperado: 0 filas. Complementar en RMAN con: SHOW RETENTION POLICY
+============================================================
+
+0 filas seleccionadas.
+
+============================================================
+PT-11 (CO-11, A8.11) Columnas sensibles sin política de redacción
+Esperado: 0 filas
+============================================================
+
+OWNER
+--------------------------------------------------------------------------------------------------------------------------------
+TABLE_NAME
+--------------------------------------------------------------------------------------------------------------------------------
+COLUMN_NAME
+--------------------------------------------------------------------------------------------------------------------------------
+RRHH
+EMPLEADOS
+CEDULA
+
+RRHH
+EMPLEADOS
+SALARIO
+
+
+2 filas seleccionadas.
+
+
+0 filas seleccionadas.
+
+============================================================
+PT-12 (CO-12, A8.12) Keystore, tablespaces cifrados y roles de exportación
+Esperado: STATUS = OPEN; ENCRYPTED = YES; roles solo en cuentas autorizadas
+============================================================
+
+WRL_TYPE             STATUS                         WALLET_TYPE
+-------------------- ------------------------------ --------------------
+FILE                 NOT_AVAILABLE                  UNKNOWN
+
+1 fila seleccionada.
+
+
+TABLESPACE_NAME                ENC
+------------------------------ ---
+USERS                          NO
+TS_DIM                         NO
+TS_REL                         NO
+TS_FACT                        NO
+TS_IDX                         NO
+MEX4_A1                        NO
+MEX4_A2                        NO
+MEX4_A3                        NO
+MEX4_IPK                       NO
+MEX4_IFK                       NO
+TBS_PRUEBA                     NO
+TBS_DISCO                      NO
+
+12 filas seleccionadas.
+
+
+GRANTEE
+--------------------------------------------------------------------------------------------------------------------------------
+GRANTED_ROLE
+--------------------------------------------------------------------------------------------------------------------------------
+GSMADMIN_INTERNAL
+DATAPUMP_EXP_FULL_DATABASE
+
+DATAPUMP_IMP_FULL_DATABASE
+EXP_FULL_DATABASE
+
+DBA
+DATAPUMP_EXP_FULL_DATABASE
+
+DBA
+EXP_FULL_DATABASE
+
+DATAPUMP_EXP_FULL_DATABASE
+EXP_FULL_DATABASE
+
+SYS
+EXP_FULL_DATABASE
+
+SYS
+DATAPUMP_EXP_FULL_DATABASE
+
+GSMUSER_ROLE
+DATAPUMP_EXP_FULL_DATABASE
+
+
+8 filas seleccionadas.
+
+============================================================
+PT-13 (CO-13, A8.13) Modo de archivado, último respaldo y piezas sin cifrar
+Esperado: ARCHIVELOG; respaldo de menos de 24 h; 0 piezas sin cifrar
+============================================================
+
+LOG_MODE
+------------
+ARCHIVELOG
+
+1 fila seleccionada.
+
+
+ULTIMO_R
+--------
+
+
+1 fila seleccionada.
+
+
+PIEZAS_SIN_CIFRAR
+-----------------
+               21
+
+1 fila seleccionada.
+
+============================================================
+PT-14 (CO-14, A8.15) Políticas de auditoría habilitadas y eventos recientes
+Esperado: políticas de inicios fallidos y de tablas sensibles; eventos en 7 días
+============================================================
+
+POLICY_NAME                                                                                                                      ENABLED_OPTION
+-------------------------------------------------------------------------------------------------------------------------------- ---------------
+ENTITY_NAME
+--------------------------------------------------------------------------------------------------------------------------------
+ORA_SECURECONFIG                                                                                                                 BY USER
+ALL USERS
+
+ORA_LOGON_FAILURES                                                                                                               BY USER
+ALL USERS
+
+
+2 filas seleccionadas.
+
+
+ACTION_NAME                                                         EVENTOS
+---------------------------------------------------------------- ----------
+CREATE USER                                                               5
+GRANT                                                                     3
+DROP USER                                                                 1
+CREATE TABLE                                                              1
+
+4 filas seleccionadas.
+
+============================================================
+PT-15 (CO-15, A8.20) Cifrado de la conexión actual
+Esperado: aparece un servicio de cifrado (por ejemplo AES256)
+Además revisar sqlnet.ora: SQLNET.ENCRYPTION_SERVER = REQUIRED,
+TCP.VALIDNODE_CHECKING = YES, TCP.INVITED_NODES
+============================================================
+
+NETWORK_SERVICE_BANNER
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Windows NT TCP/IP NT Protocol Adapter for 64-bit Windows: Version 21.0.0.0.0 - Production
+Encryption service for 64-bit Windows: Version 21.0.1.0.0 - Production
+Crypto-checksumming service for 64-bit Windows: Version 21.0.1.0.0 - Production
+
+3 filas seleccionadas.

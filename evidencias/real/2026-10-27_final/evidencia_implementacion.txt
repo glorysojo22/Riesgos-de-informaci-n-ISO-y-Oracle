@@ -1,0 +1,282 @@
+CONTENEDOR
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+USUARIO
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FECHA_IMPLEMENTACION
+-------------------------------------
+XEPDB1
+SYSTEM
+25/10/26 06:27:38,378000000 PM -06:00
+
+
+1 fila seleccionada.
+
+============================================================
+[A8.5 / A5.17] Perfil de contraseñas PERFIL_FUNCIONARIO
+============================================================
+
+OBJECT_NAME                                                                                                                      STATUS
+-------------------------------------------------------------------------------------------------------------------------------- -------
+ORA12C_STRONG_VERIFY_FUNCTION                                                                                                    VALID
+
+1 fila seleccionada.
+
+Perfil PERFIL_FUNCIONARIO actualizado.
+
+Procedimiento PL/SQL terminado correctamente.
+============================================================
+[A5.33 / A8.2] Separación de funciones: DBA operativo y responsable de auditoría
+============================================================
+Procedimiento PL/SQL terminado correctamente.
+
+Role ROL_DBA_OPERATIVO creado.
+
+
+Grant correcto.
+
+
+Grant correcto.
+
+Procedimiento PL/SQL terminado correctamente.
+
+Error que empieza en la línea : 94 Archivo @ C:\evaluacion_oracle\04_implementar_controles.sql
+del comando -
+CREATE USER admin_bd IDENTIFIED BY "&admin_bd_pwd" PROFILE perfil_funcionario
+Informe de error -
+ORA-28003: fallo en la verificación de la contraseña especificada
+ORA-20000: password must contain 2 or more special characters
+
+https://docs.oracle.com/error-help/db/ora-28003/28003. 00000 -  "The password chosen did not meet the required complexity rules set by your organization."
+*Cause:    The new password did not meet the complexity rules which may
+           include the minimum number of characters, integers, and special
+           characters.
+*Action:   Enter a different password that meets your organization
+           password complexity requirements. If you don't know the password
+           requirements, check with your system administrator or help desk.
+
+Error que empieza en la línea : 95 Archivo @ C:\evaluacion_oracle\04_implementar_controles.sql
+del comando -
+GRANT rol_dba_operativo TO admin_bd
+Informe de error -
+ORA-01917: el usuario o rol 'ADMIN_BD' no existe
+
+https://docs.oracle.com/error-help/db/ora-01917/01917. 00000 -  "user or role '%s' does not exist"
+*Cause:    A user or role by that name did not exist.
+*Action:   Re-specify the name.
+Procedimiento PL/SQL terminado correctamente.
+
+Error que empieza en la línea : 99 Archivo @ C:\evaluacion_oracle\04_implementar_controles.sql
+del comando -
+CREATE USER auditor_seg IDENTIFIED BY "&audit_pwd" PROFILE perfil_funcionario
+Informe de error -
+ORA-28003: fallo en la verificación de la contraseña especificada
+ORA-20000: password must contain 2 or more special characters
+
+https://docs.oracle.com/error-help/db/ora-28003/28003. 00000 -  "The password chosen did not meet the required complexity rules set by your organization."
+*Cause:    The new password did not meet the complexity rules which may
+           include the minimum number of characters, integers, and special
+           characters.
+*Action:   Enter a different password that meets your organization
+           password complexity requirements. If you don't know the password
+           requirements, check with your system administrator or help desk.
+
+Error que empieza en la línea : 100 Archivo @ C:\evaluacion_oracle\04_implementar_controles.sql
+del comando -
+GRANT CREATE SESSION, AUDIT_ADMIN, AUDIT_VIEWER TO auditor_seg
+Informe de error -
+ORA-01917: el usuario o rol 'AUDITOR_SEG' no existe
+
+https://docs.oracle.com/error-help/db/ora-01917/01917. 00000 -  "user or role '%s' does not exist"
+*Cause:    A user or role by that name did not exist.
+*Action:   Re-specify the name.
+============================================================
+[A5.15] Acceso a RRHH solo mediante roles por función
+============================================================
+Procedimiento PL/SQL terminado correctamente.
+
+Role ROL_RRHH creado.
+
+
+Grant correcto.
+
+0 privilegios directos revocados.
+
+Procedimiento PL/SQL terminado correctamente.
+============================================================
+[A8.5 / A5.16] Asignar PERFIL_FUNCIONARIO a las cuentas
+============================================================
+Procedimiento PL/SQL terminado correctamente.
+
+USERNAME
+--------------------------------------------------------------------------------------------------------------------------------
+PROFILE                                                                                                                          ACCOUNT_STATUS
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------
+LAST_LOGIN
+-------------------------------------------------
+HR
+DEFAULT                                                                                                                          OPEN
+19/08/26 01:35:07,000000000 PM AMERICA/COSTA_RICA
+
+MEX4
+DEFAULT                                                                                                                          OPEN
+15/09/26 03:00:11,000000000 PM AMERICA/COSTA_RICA
+
+MONITOR_USER
+DEFAULT                                                                                                                          OPEN
+19/08/26 09:39:13,000000000 PM AMERICA/COSTA_RICA
+
+PDBADMIN
+DEFAULT                                                                                                                          OPEN
+
+
+PRUEBA
+DEFAULT                                                                                                                          OPEN
+
+
+TLD_USER
+DEFAULT                                                                                                                          OPEN
+04/09/26 02:01:50,000000000 PM AMERICA/COSTA_RICA
+
+UNIV_DB
+DEFAULT                                                                                                                          OPEN
+13/09/26 04:21:57,000000000 PM AMERICA/COSTA_RICA
+
+
+7 filas seleccionadas.
+
+Si respondés N, estas cuentas quedan con el perfil DEFAULT y PT-09 lo va a mostrar:
+documentalas como excepción en la evaluación.
+Perfil asignado a PDBADMIN
+Perfil asignado a MEX4
+Perfil asignado a HR
+Perfil asignado a MONITOR_USER
+Perfil asignado a TLD_USER
+Perfil asignado a UNIV_DB
+Perfil asignado a PRUEBA
+7 cuentas adicionales pasaron a PERFIL_FUNCIONARIO.
+
+Procedimiento PL/SQL terminado correctamente.
+============================================================
+[A5.17] Bloquear cuentas abiertas con contraseña por defecto
+============================================================
+Bloqueada: HR
+1 cuentas con contraseña por defecto bloqueadas.
+
+Procedimiento PL/SQL terminado correctamente.
+============================================================
+[A5.16] Cuentas abiertas sin uso en 90 días
+============================================================
+
+USERNAME                                                                                                                         ACCOUNT_STATUS
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------
+LAST_LOGIN                              CREATED
+--------------------------------------- --------
+PDBADMIN                                                                                                                         OPEN
+                                        16/07/26
+
+PRUEBA                                                                                                                           OPEN
+                                        12/10/26
+
+
+2 filas seleccionadas.
+
+Revisá la lista anterior. Si alguna cuenta la usás para otros trabajos, respondé N.
+Bloqueada: PDBADMIN
+Bloqueada: PRUEBA
+2 cuentas inactivas bloqueadas.
+
+Procedimiento PL/SQL terminado correctamente.
+============================================================
+[A8.2] Privilegios elevados en cuentas propias
+============================================================
+
+GRANTEE
+--------------------------------------------------------------------------------------------------------------------------------
+PRIVILEGIO
+--------------------------------------------------------------------------------------------------------------------------------
+HR
+DBA
+
+
+1 fila seleccionada.
+
+Si alguna de estas cuentas la usás para otros trabajos, respondé N y documentá la excepción.
+Revocado DBA de HR
+1 privilegios elevados revocados.
+
+Procedimiento PL/SQL terminado correctamente.
+============================================================
+[A8.12] Roles de exportación masiva en cuentas propias
+============================================================
+
+0 filas seleccionadas.
+
+0 roles de exportación revocados.
+
+Procedimiento PL/SQL terminado correctamente.
+============================================================
+[A8.3] Virtual Private Database: cada usuario ve solo su departamento
+============================================================
+Procedimiento PL/SQL terminado correctamente.
+
+Table RRHH.USUARIOS_DEPARTAMENTO creado.
+
+
+1 fila insertadas.
+
+
+1 fila insertadas.
+
+Confirmación terminada.
+
+Function RRHH.VPD_DEPARTAMENTO compilado
+
+Política VPD PF_DEPARTAMENTO creada.
+
+Procedimiento PL/SQL terminado correctamente.
+============================================================
+[A8.11] Data Redaction: cédula parcial y salario oculto
+============================================================
+Política de redacción RED_EMPLEADOS creada.
+
+Procedimiento PL/SQL terminado correctamente.
+============================================================
+[A8.10] Purgar la papelera de reciclaje de los esquemas sensibles
+============================================================
+0 tablas purgadas de la papelera.
+
+Procedimiento PL/SQL terminado correctamente.
+============================================================
+[A5.18] Iniciar la captura de privilegios (análisis de privilegios)
+============================================================
+Captura CAP_REVISION activa.
+
+Procedimiento PL/SQL terminado correctamente.
+============================================================
+[A8.15 / A5.33] Políticas de auditoría (las crea AUDITOR_SEG, no el DBA)
+============================================================
+Error que empieza en la línea : 398 Archivo @ C:\evaluacion_oracle\04_implementar_controles.sql
+del comando -
+  connect ...
+Informe de error -
+Fallo de conexión
+Fallo de conexión
+  USER          = auditor_seg
+  URL           = jdbc:oracle:thin:@localhost:1521/XEPDB1
+  Mensaje de Error = ORA-01017: nombre de usuario/contraseña no válidos; conexión denegada
+
+https://docs.oracle.com/error-help/db/ora-01017/
+Commit
+SP2-0640: No conectado
+SP2-0640: No conectado
+Error que empieza en la línea : 421 Archivo @ C:\evaluacion_oracle\04_implementar_controles.sql
+del comando -
+  connect ...
+Informe de error -
+Fallo de conexión
+Fallo de conexión
+  USER          = system
+  URL           = jdbc:oracle:thin:@localhost:1521/XEPDB1
+  Mensaje de Error = ORA-01017: nombre de usuario/contraseña no válidos; conexión denegada
+
+https://docs.oracle.com/error-help/db/ora-01017/

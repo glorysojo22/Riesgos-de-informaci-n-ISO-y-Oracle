@@ -1,0 +1,272 @@
+============================================================
+PF-01 (A8.5) Bloqueo de la cuenta tras intentos fallidos
+============================================================
+Conectado.
+
+Procedimiento PL/SQL terminado correctamente.
+
+
+Procedimiento PL/SQL terminado correctamente.
+
+
+Usuario creado.
+
+
+Concesi�n terminada correctamente.
+
+Cuatro intentos con contraseña incorrecta (FAILED_LOGIN_ATTEMPTS = 3)
+Esperado: ORA-01017 en los primeros; la cuenta queda bloqueada al tercero
+Intento 1
+ERROR:
+ORA-01017: nombre de usuario/contrase�a no v�lidos; conexi�n denegada
+
+
+Advertencia: �Ya no est� conectado a ORACLE!
+Conectado.
+Intento 2
+ERROR:
+ORA-01017: nombre de usuario/contrase�a no v�lidos; conexi�n denegada
+
+
+Advertencia: �Ya no est� conectado a ORACLE!
+Conectado.
+Intento 3
+ERROR:
+ORA-01017: nombre de usuario/contrase�a no v�lidos; conexi�n denegada
+
+
+Advertencia: �Ya no est� conectado a ORACLE!
+Conectado.
+Intento 4
+ERROR:
+ORA-28000: La cuenta est� bloqueada.
+
+
+Advertencia: �Ya no est� conectado a ORACLE!
+Conectado.
+Intento con la contraseña correcta. Esperado: ORA-28000 (cuenta bloqueada)
+ERROR:
+ORA-28000: La cuenta est� bloqueada.
+
+
+Advertencia: �Ya no est� conectado a ORACLE!
+Conectado.
+Estado de la cuenta. Esperado: LOCKED(TIMED)
+
+USERNAME                                                                                                                         ACCOUNT_STATUS                   LOCK_DAT
+-------------------------------------------------------------------------------------------------------------------------------- -------------------------------- --------
+PROFILE
+--------------------------------------------------------------------------------------------------------------------------------
+PRUEBA_LOCK                                                                                                                      LOCKED(TIMED)                    27/10/26
+PERFIL_FUNCIONARIO
+
+
+1 fila seleccionada.
+
+============================================================
+PF-02 (A5.17) Rechazo de una contraseña débil
+Esperado: ORA-28003 (no cumple la función de verificación)
+============================================================
+Conectado.
+CREATE USER prueba_debil IDENTIFIED BY "abc123" PROFILE perfil_funcionario
+*
+ERROR en l�nea 1:
+ORA-28003: fallo en la verificaci�n de la contrase�a especificada
+ORA-20000: password length less than 9 characters
+
+
+============================================================
+PF-03 (A5.15) Acceso a datos sensibles solo mediante rol
+============================================================
+Conectado.
+Sin rol. Esperado: ORA-00942
+SELECT COUNT(*) FROM rrhh.empleados
+                          *
+ERROR en l�nea 1:
+ORA-00942: la tabla o vista no existe
+
+
+Conectado.
+
+Concesi�n terminada correctamente.
+
+Conectado.
+Con rol. Esperado: la consulta devuelve un conteo
+
+  COUNT(*)
+----------
+         2
+
+1 fila seleccionada.
+
+============================================================
+PF-04 (A8.11) Enmascaramiento de columnas sensibles
+Esperado: CEDULA y SALARIO aparecen redactados (por ejemplo SALARIO = 0)
+============================================================
+
+NOMBRE
+------------------------------------------------------------
+CEDULA
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+   SALARIO
+----------
+Ana Rojas
+*-****-1111
+         0
+
+Luis Mora
+*-****-2222
+         0
+
+
+2 filas seleccionadas.
+
+============================================================
+PF-05 (A8.3) Filtrado de filas con VPD
+============================================================
+PRUEBA_TI. Esperado: solo filas del departamento TI
+
+DE      FILAS
+-- ----------
+TI          2
+
+1 fila seleccionada.
+
+Conectado.
+PRUEBA_CONTA. Esperado: solo filas del departamento CONTA
+
+DEPAR      FILAS
+----- ----------
+CONTA          2
+
+1 fila seleccionada.
+
+============================================================
+PF-06 (A8.15) La auditoría registra la lectura de datos sensibles
+Esperado: aparecen las consultas de PRUEBA_TI y PRUEBA_CONTA
+============================================================
+Conectado.
+
+EVENT_TIMESTAMP
+---------------------------------------------------------------------------
+DBUSERNAME                                                                                                                       ACTION_NAME
+-------------------------------------------------------------------------------------------------------------------------------- ----------------------------------------------------------------
+OBJECT_NAME
+--------------------------------------------------------------------------------------------------------------------------------
+27/10/26 15:48:05,869000
+PRUEBA_CONTA                                                                                                                     SELECT
+EMPLEADOS
+
+27/10/26 15:48:05,290000
+PRUEBA_TI                                                                                                                        SELECT
+EMPLEADOS
+
+27/10/26 15:48:05,279000
+PRUEBA_TI                                                                                                                        SELECT
+EMPLEADOS
+
+27/10/26 15:48:05,272000
+PRUEBA_TI                                                                                                                        SELECT
+EMPLEADOS
+
+27/10/26 15:48:04,061000
+PRUEBA_TI                                                                                                                        SELECT
+EMPLEADOS
+
+27/10/26 15:38:58,500000
+PRUEBA_CONTA                                                                                                                     SELECT
+EMPLEADOS
+
+27/10/26 15:38:57,858000
+PRUEBA_TI                                                                                                                        SELECT
+EMPLEADOS
+
+27/10/26 15:38:57,849000
+PRUEBA_TI                                                                                                                        SELECT
+EMPLEADOS
+
+27/10/26 15:38:57,840000
+PRUEBA_TI                                                                                                                        SELECT
+EMPLEADOS
+
+27/10/26 15:38:55,533000
+PRUEBA_TI                                                                                                                        SELECT
+EMPLEADOS
+
+27/10/26 15:34:48,075000
+PRUEBA_CONTA                                                                                                                     SELECT
+EMPLEADOS
+
+27/10/26 15:34:47,416000
+PRUEBA_TI                                                                                                                        SELECT
+EMPLEADOS
+
+27/10/26 15:34:47,375000
+PRUEBA_TI                                                                                                                        SELECT
+EMPLEADOS
+
+27/10/26 15:34:47,354000
+PRUEBA_TI                                                                                                                        SELECT
+EMPLEADOS
+
+27/10/26 15:34:45,940000
+PRUEBA_TI                                                                                                                        SELECT
+EMPLEADOS
+
+
+15 filas seleccionadas.
+
+============================================================
+PF-07 (A5.33) Separación de funciones entre el DBA y la auditoría
+============================================================
+Paso 1: el DBA operativo (ADMIN_BD) intenta manipular la auditoría.
+Las políticas de prueba no usan tablas de RRHH: así el error solo puede venir
+de la falta del privilegio AUDIT_ADMIN y no de que ADMIN_BD no vea la tabla (ORA-00942).
+Conectado.
+1a. Crear una política. Esperado: ORA-01031 (privilegios insuficientes)
+CREATE AUDIT POLICY pol_prueba_segregacion ACTIONS LOGON
+*
+ERROR en l�nea 1:
+ORA-01031: privilegios insuficientes
+
+
+1b. Desactivar la política que protege RRHH. Esperado: ORA-01031
+NOAUDIT POLICY pol_rrhh_lectura
+                              *
+ERROR en l�nea 1:
+ORA-01031: privilegios insuficientes
+
+
+Si alguna de las dos líneas anteriores no dio error, el DBA puede alterar la auditoría: NO CUMPLE.
+Paso 2: el responsable de auditoría (AUDITOR_SEG) sí puede hacerlo.
+Esperado: la política se crea y luego se elimina sin errores.
+Conectado.
+
+Procedimiento PL/SQL terminado correctamente.
+
+
+Pol�tica de auditor�a creada.
+
+
+Pol�tica de auditor�a borrada.
+
+POL_RRHH_LECTURA debe seguir habilitada (el DBA no pudo desactivarla)
+
+POLICY_NAME                                                                                                                      ENABLED_OPTION  SUC FAI
+-------------------------------------------------------------------------------------------------------------------------------- --------------- --- ---
+POL_RRHH_LECTURA                                                                                                                 BY USER         YES YES
+
+1 fila seleccionada.
+
+Conectado.
+============================================================
+Limpieza de la prueba
+============================================================
+
+Revocaci�n terminada correctamente.
+
+
+Usuario borrado.
+
+
+Procedimiento PL/SQL terminado correctamente.

@@ -1,0 +1,340 @@
+FECHA_REVISION
+---------------------------------------------------------------------------
+27/10/26 17:45:54,687000 -06:00
+
+1 fila seleccionada.
+
+La captura ya estaba detenida (ORA-47936: La captura de privilegio CAP_REVISION ya est� desactivada.).
+Resultado de CAP_REVISION generado.
+
+Procedimiento PL/SQL terminado correctamente.
+
+Estado de la captura. Esperado: ENABLED = N
+
+NAME                                                                                                                             TYPE             E
+-------------------------------------------------------------------------------------------------------------------------------- ---------------- -
+CAP_REVISION                                                                                                                     DATABASE         N
+
+1 fila seleccionada.
+
+============================================================
+Privilegios usados durante la captura (cuentas propias)
+============================================================
+
+USERNAME                                                                                                                         SYS_PRIV
+-------------------------------------------------------------------------------------------------------------------------------- ----------------------------------------
+OBJ_PRIV                                 OBJECT_OWNER
+---------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+OBJECT_NAME
+--------------------------------------------------------------------------------------------------------------------------------
+ADMIN_BD                                                                                                                         CREATE SESSION
+
+
+
+ADMIN_BD
+EXECUTE                                  SYS
+DBMS_APPLICATION_INFO
+
+ADMIN_BD
+READ                                     SYS
+NLS_SESSION_PARAMETERS
+
+ADMIN_BD
+READ                                     SYS
+NLS_DATABASE_PARAMETERS
+
+ADMIN_BD
+READ                                     SYS
+V_$VERSION
+
+ADMIN_BD
+SELECT                                   SYS
+DUAL
+
+ADMIN_BD
+SELECT                                   SYS
+DBA_USERS
+
+AUDITOR_EXT                                                                                                                      CREATE SESSION
+
+
+
+AUDITOR_EXT
+EXECUTE                                  SYS
+DBMS_APPLICATION_INFO
+
+AUDITOR_EXT
+READ                                     SYS
+NLS_DATABASE_PARAMETERS
+
+AUDITOR_EXT
+READ                                     AUDSYS
+UNIFIED_AUDIT_TRAIL
+
+AUDITOR_EXT
+READ                                     SYS
+NLS_SESSION_PARAMETERS
+
+AUDITOR_EXT
+READ                                     SYS
+V_$VERSION
+
+AUDITOR_EXT
+SELECT                                   SYS
+DBA_USERS
+
+AUDITOR_EXT
+SELECT                                   SYS
+DUAL
+
+AUDITOR_SEG                                                                                                                      AUDIT SYSTEM
+
+
+
+AUDITOR_SEG                                                                                                                      CREATE SESSION
+
+
+
+AUDITOR_SEG
+EXECUTE                                  SYS
+DBMS_APPLICATION_INFO
+
+AUDITOR_SEG
+EXECUTE                                  SYS
+DBMS_OUTPUT
+
+AUDITOR_SEG
+READ                                     SYS
+AUDIT_UNIFIED_ENABLED_POLICIES
+
+AUDITOR_SEG
+READ                                     SYS
+NLS_DATABASE_PARAMETERS
+
+AUDITOR_SEG
+READ                                     SYS
+NLS_SESSION_PARAMETERS
+
+AUDITOR_SEG
+READ                                     SYS
+DBA_USERS
+
+AUDITOR_SEG
+READ                                     SYS
+V_$VERSION
+
+AUDITOR_SEG
+SELECT                                   SYS
+DUAL
+
+PRUEBA_CONTA                                                                                                                     CREATE SESSION
+
+
+
+PRUEBA_CONTA
+EXECUTE                                  SYS
+DBMS_APPLICATION_INFO
+
+PRUEBA_CONTA
+READ                                     SYS
+V_$VERSION
+
+PRUEBA_CONTA
+READ                                     SYS
+NLS_SESSION_PARAMETERS
+
+PRUEBA_CONTA
+READ                                     SYS
+NLS_DATABASE_PARAMETERS
+
+PRUEBA_CONTA
+SELECT                                   RRHH
+EMPLEADOS
+
+PRUEBA_CONTA
+SELECT                                   SYS
+DUAL
+
+PRUEBA_TI                                                                                                                        CREATE SESSION
+
+
+
+PRUEBA_TI
+EXECUTE                                  SYS
+DBMS_APPLICATION_INFO
+
+PRUEBA_TI
+READ                                     SYS
+NLS_DATABASE_PARAMETERS
+
+PRUEBA_TI
+READ                                     SYS
+V_$VERSION
+
+PRUEBA_TI
+READ                                     SYS
+NLS_SESSION_PARAMETERS
+
+PRUEBA_TI
+SELECT                                   SYS
+DUAL
+
+PRUEBA_TI
+SELECT                                   RRHH
+EMPLEADOS
+
+TLD_USER                                                                                                                         CREATE SESSION
+
+
+
+TLD_USER
+EXECUTE                                  SYS
+DBMS_UTILITY
+
+TLD_USER
+READ                                     SYS
+V_$VERSION
+
+TLD_USER
+READ                                     SYS
+NLS_DATABASE_PARAMETERS
+
+TLD_USER
+READ                                     SYS
+NLS_SESSION_PARAMETERS
+
+TLD_USER
+READ                                     SYS
+ALL_USERS
+
+TLD_USER
+READ                                     SYS
+ALL_TABLES
+
+TLD_USER
+READ                                     SYS
+ALL_OBJECTS
+
+TLD_USER
+READ                                     SYS
+ALL_PROCEDURES
+
+TLD_USER
+
+USERNAME                                                                                                                         SYS_PRIV
+-------------------------------------------------------------------------------------------------------------------------------- ----------------------------------------
+OBJ_PRIV                                 OBJECT_OWNER
+---------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+OBJECT_NAME
+--------------------------------------------------------------------------------------------------------------------------------
+READ                                     SYS
+V_$OPTION
+
+TLD_USER
+READ                                     SYS
+USER_ROLE_PRIVS
+
+TLD_USER
+READ                                     SYS
+DATABASE_COMPATIBLE_LEVEL
+
+TLD_USER
+READ                                     SYS
+USER_USERS
+
+TLD_USER
+READ                                     SYS
+USER_OBJECTS
+
+TLD_USER
+SELECT                                   SYS
+DUAL
+
+TLD_USER
+SELECT                                   SYS
+GV_$DATABASE
+
+TLD_USER
+SELECT                                   SYS
+V_$DG_BROKER_CONFIG
+
+
+56 filas seleccionadas.
+
+============================================================
+Privilegios de SISTEMA otorgados que NO se usaron (candidatos a revocar)
+============================================================
+
+USERNAME        SYS_PRIV                     ROLENAME
+--------------- ---------------------------- -------------------------
+ADMIN_BD        ALTER PROFILE                (directo)
+ADMIN_BD        ALTER TABLESPACE             (directo)
+ADMIN_BD        ALTER USER                   (directo)
+ADMIN_BD        CREATE PROFILE               (directo)
+ADMIN_BD        CREATE ROLE                  (directo)
+ADMIN_BD        CREATE TABLESPACE            (directo)
+ADMIN_BD        CREATE USER                  (directo)
+ADMIN_BD        DROP USER                    (directo)
+AUDITOR_SEG     AUDIT ANY                    (directo)
+TLD_USER        CREATE CLUSTER               (directo)
+TLD_USER        CREATE INDEXTYPE             (directo)
+TLD_USER        CREATE OPERATOR              (directo)
+TLD_USER        CREATE PROCEDURE             (directo)
+TLD_USER        CREATE SEQUENCE              (directo)
+TLD_USER        CREATE TABLE                 (directo)
+TLD_USER        CREATE TRIGGER               (directo)
+TLD_USER        CREATE TYPE                  (directo)
+TLD_USER        SET CONTAINER                (directo)
+TLD_USER        UNLIMITED TABLESPACE         (directo)
+
+19 filas seleccionadas.
+
+============================================================
+Privilegios sobre OBJETOS que NO se usaron, resumidos por cuenta, rol y dueño
+(el detalle objeto por objeto ocupa miles de filas: casi todo viene de
+SELECT_CATALOG_ROLE, que da lectura a las vistas del diccionario)
+============================================================
+
+USERNAME        ROLENAME                  OBJECT_OWNER    PRIVILEGIOS_NO_USADOS
+--------------- ------------------------- --------------- ---------------------
+ADMIN_BD        (directo)                 SYS                              4710
+ADMIN_BD        (directo)                 XDB                                56
+ADMIN_BD        (directo)                 LBACSYS                            38
+ADMIN_BD        (directo)                 WMSYS                              16
+ADMIN_BD        (directo)                 SYSTEM                              4
+ADMIN_BD        (directo)                 OUTLN                               3
+ADMIN_BD        (directo)                 MDSYS                               1
+ADMIN_BD        (directo)                 DVSYS                               1
+AUDITOR_EXT     (directo)                 SYS                              4742
+AUDITOR_EXT     (directo)                 XDB                                56
+AUDITOR_EXT     (directo)                 LBACSYS                            40
+AUDITOR_EXT     (directo)                 WMSYS                              16
+AUDITOR_EXT     (directo)                 AUDSYS                              5
+AUDITOR_EXT     (directo)                 SYSTEM                              4
+AUDITOR_EXT     (directo)                 OUTLN                               3
+AUDITOR_EXT     (directo)                 DVSYS                               1
+AUDITOR_EXT     (directo)                 MDSYS                               1
+AUDITOR_SEG     (directo)                 SYS                                41
+AUDITOR_SEG     (directo)                 AUDSYS                              7
+AUDITOR_SEG     (directo)                 LBACSYS                             2
+TLD_USER        (directo)                 SYS                              4709
+TLD_USER        (directo)                 XDB                                59
+TLD_USER        (directo)                 LBACSYS                            38
+TLD_USER        (directo)                 WMSYS                              16
+TLD_USER        (directo)                 SYSTEM                              4
+TLD_USER        (directo)                 OUTLN                               3
+TLD_USER        (directo)                 MDSYS                               1
+TLD_USER        (directo)                 DVSYS                               1
+
+28 filas seleccionadas.
+
+Privilegios sobre objetos de esquemas de NEGOCIO no usados (RRHH, FIN). Revisar uno por uno:
+
+ninguna fila seleccionada
+
+============================================================
+Acta de revisión de privilegios
+Para cada privilegio no usado, decidir: revocar o justificar.
+Registrar la decisión en el acta (fecha, responsable, decisión)
+y adjuntarla como evidencia de PT-05 en la evaluación.
+============================================================

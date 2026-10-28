@@ -1,0 +1,590 @@
+============================================================
+PT-00 Ambiente de pruebas
+Esperado: versión, contenedor XEPDB1 y paquetes disponibles
+============================================================
+
+BANNER_FULL
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
+Version 21.3.0.0.0
+
+
+1 fila seleccionada.
+
+
+CONTENEDOR
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+USUARIO
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FECHA_EJECUCION
+---------------------------------------------------------------------------
+XEPDB1
+AUDITOR_EXT
+27/10/26 17:57:50,754000 -06:00
+
+
+1 fila seleccionada.
+
+
+OWNER
+--------------------------------------------------------------------------------------------------------------------------------
+PAQUETE_DISPONIBLE
+--------------------------------------------------------------------------------------------------------------------------------
+AUDSYS
+DBMS_AUDIT_MGMT
+
+SYS
+DBMS_PRIVILEGE_CAPTURE
+
+SYS
+DBMS_REDACT
+
+SYS
+DBMS_RLS
+
+SYS
+DBMS_TSDP_MANAGE
+
+
+5 filas seleccionadas.
+
+
+PARAMETER                                                        VALUE
+---------------------------------------------------------------- ----------------------------------------------------------------
+Unified Auditing                                                 FALSE
+
+1 fila seleccionada.
+
+============================================================
+PT-01 (CO-01, A5.12) Columnas sensibles etiquetadas
+Esperado: coinciden con el inventario documentado
+============================================================
+
+OWNER
+--------------------------------------------------------------------------------------------------------------------------------
+TABLE_NAME
+--------------------------------------------------------------------------------------------------------------------------------
+COLUMN_NAME
+--------------------------------------------------------------------------------------------------------------------------------
+RRHH
+EMPLEADOS
+CEDULA
+
+RRHH
+EMPLEADOS
+SALARIO
+
+
+2 filas seleccionadas.
+
+============================================================
+PT-02 (CO-02, A5.15) Privilegios directos a usuarios en esquemas sensibles
+Esperado: 0 filas
+============================================================
+
+ninguna fila seleccionada
+
+============================================================
+PT-03 (CO-03, A5.16) Cuentas abiertas sin acceso en 90 días
+Esperado: 0 filas (además, cruzar DBA_USERS con la planilla)
+============================================================
+
+ninguna fila seleccionada
+
+============================================================
+PT-04 (CO-04, A5.17) Cuentas abiertas con contraseña por defecto
+Esperado: 0 filas
+============================================================
+
+ninguna fila seleccionada
+
+============================================================
+PT-05 (CO-05, A5.18) Capturas de privilegios y privilegios no usados
+Esperado: al menos una captura; no usados revocados o justificados
+============================================================
+
+NAME                                                                                                                             TYPE             E
+-------------------------------------------------------------------------------------------------------------------------------- ---------------- -
+CAP_REVISION                                                                                                                     DATABASE         N
+ORA$DEPENDENCY                                                                                                                   DATABASE         N
+
+2 filas seleccionadas.
+
+Privilegios de sistema no usados (cuentas propias)
+
+CAPTURE
+--------------------------------------------------------------------------------------------------------------------------------
+USERNAME                                                                                                                         SYS_PRIV
+-------------------------------------------------------------------------------------------------------------------------------- ----------------------------------------
+CAP_REVISION
+ADMIN_BD                                                                                                                         ALTER PROFILE
+
+CAP_REVISION
+ADMIN_BD                                                                                                                         ALTER TABLESPACE
+
+CAP_REVISION
+ADMIN_BD                                                                                                                         ALTER USER
+
+CAP_REVISION
+ADMIN_BD                                                                                                                         CREATE PROFILE
+
+CAP_REVISION
+ADMIN_BD                                                                                                                         CREATE ROLE
+
+CAP_REVISION
+ADMIN_BD                                                                                                                         CREATE TABLESPACE
+
+CAP_REVISION
+ADMIN_BD                                                                                                                         CREATE USER
+
+CAP_REVISION
+ADMIN_BD                                                                                                                         DROP USER
+
+CAP_REVISION
+AUDITOR_SEG                                                                                                                      AUDIT ANY
+
+CAP_REVISION
+TLD_USER                                                                                                                         CREATE CLUSTER
+
+CAP_REVISION
+TLD_USER                                                                                                                         CREATE INDEXTYPE
+
+CAP_REVISION
+TLD_USER                                                                                                                         CREATE OPERATOR
+
+CAP_REVISION
+TLD_USER                                                                                                                         CREATE PROCEDURE
+
+CAP_REVISION
+TLD_USER                                                                                                                         CREATE SEQUENCE
+
+CAP_REVISION
+TLD_USER                                                                                                                         CREATE TABLE
+
+CAP_REVISION
+TLD_USER                                                                                                                         CREATE TRIGGER
+
+CAP_REVISION
+TLD_USER                                                                                                                         CREATE TYPE
+
+CAP_REVISION
+TLD_USER                                                                                                                         SET CONTAINER
+
+CAP_REVISION
+TLD_USER                                                                                                                         UNLIMITED TABLESPACE
+
+
+19 filas seleccionadas.
+
+Privilegios sobre objetos no usados, por cuenta y dueño (cuentas propias)
+
+CAPTURE
+--------------------------------------------------------------------------------------------------------------------------------
+USERNAME
+--------------------------------------------------------------------------------------------------------------------------------
+OBJECT_OWNER                                                                                                                      NO_USADOS
+-------------------------------------------------------------------------------------------------------------------------------- ----------
+CAP_REVISION
+ADMIN_BD
+SYS                                                                                                                                    4710
+
+CAP_REVISION
+ADMIN_BD
+XDB                                                                                                                                      56
+
+CAP_REVISION
+ADMIN_BD
+LBACSYS                                                                                                                                  38
+
+CAP_REVISION
+ADMIN_BD
+WMSYS                                                                                                                                    16
+
+CAP_REVISION
+ADMIN_BD
+SYSTEM                                                                                                                                    4
+
+CAP_REVISION
+ADMIN_BD
+OUTLN                                                                                                                                     3
+
+CAP_REVISION
+ADMIN_BD
+DVSYS                                                                                                                                     1
+
+CAP_REVISION
+ADMIN_BD
+MDSYS                                                                                                                                     1
+
+CAP_REVISION
+AUDITOR_EXT
+SYS                                                                                                                                    4742
+
+CAP_REVISION
+AUDITOR_EXT
+XDB                                                                                                                                      56
+
+CAP_REVISION
+AUDITOR_EXT
+LBACSYS                                                                                                                                  40
+
+CAP_REVISION
+AUDITOR_EXT
+WMSYS                                                                                                                                    16
+
+CAP_REVISION
+AUDITOR_EXT
+AUDSYS                                                                                                                                    5
+
+CAP_REVISION
+AUDITOR_EXT
+SYSTEM                                                                                                                                    4
+
+CAP_REVISION
+AUDITOR_EXT
+OUTLN                                                                                                                                     3
+
+CAP_REVISION
+AUDITOR_EXT
+DVSYS                                                                                                                                     1
+
+CAP_REVISION
+AUDITOR_EXT
+MDSYS                                                                                                                                     1
+
+CAP_REVISION
+AUDITOR_SEG
+SYS                                                                                                                                      68
+
+CAP_REVISION
+AUDITOR_SEG
+AUDSYS                                                                                                                                   13
+
+CAP_REVISION
+AUDITOR_SEG
+LBACSYS                                                                                                                                   4
+
+CAP_REVISION
+TLD_USER
+SYS                                                                                                                                    4709
+
+CAP_REVISION
+TLD_USER
+XDB                                                                                                                                      59
+
+CAP_REVISION
+TLD_USER
+LBACSYS                                                                                                                                  38
+
+CAP_REVISION
+TLD_USER
+WMSYS                                                                                                                                    16
+
+CAP_REVISION
+TLD_USER
+SYSTEM                                                                                                                                    4
+
+CAP_REVISION
+TLD_USER
+OUTLN                                                                                                                                     3
+
+CAP_REVISION
+TLD_USER
+DVSYS                                                                                                                                     1
+
+CAP_REVISION
+TLD_USER
+MDSYS                                                                                                                                     1
+
+
+28 filas seleccionadas.
+
+No usados sobre esquemas de negocio (RRHH, FIN). Esperado: 0 filas o justificados en el acta
+
+CAPTURE
+--------------------------------------------------------------------------------------------------------------------------------
+USERNAME                                                                                                                         OBJ_PRIV
+-------------------------------------------------------------------------------------------------------------------------------- ----------------------------------------
+OBJECT_OWNER
+--------------------------------------------------------------------------------------------------------------------------------
+OBJECT_NAME
+--------------------------------------------------------------------------------------------------------------------------------
+CAP_REVISION
+SYSTEM                                                                                                                           SELECT
+RRHH
+EMPLEADOS
+
+
+1 fila seleccionada.
+
+============================================================
+PT-06 (CO-06, A5.33) Separación entre la administración de la base y la auditoría
+Esperado: 0 filas en la primera consulta, y al menos un responsable de auditoría
+en la segunda que no tenga el rol DBA
+============================================================
+
+ninguna fila seleccionada
+
+
+RESPONSABLE_AUDITORIA                                                                                                            TI
+-------------------------------------------------------------------------------------------------------------------------------- --
+AUDITOR_SEG                                                                                                                      NO
+
+1 fila seleccionada.
+
+============================================================
+PT-07 (CO-07, A8.2) Privilegios elevados
+Esperado: solo cuentas de la lista autorizada
+============================================================
+
+GRANTEE
+--------------------------------------------------------------------------------------------------------------------------------
+SYS
+SYSTEM
+
+2 filas seleccionadas.
+
+
+ninguna fila seleccionada
+
+
+USERNAME                                                                                                                         SYSDB SYSOP
+-------------------------------------------------------------------------------------------------------------------------------- ----- -----
+SYS                                                                                                                              TRUE  TRUE
+
+1 fila seleccionada.
+
+============================================================
+PT-08 (CO-08, A8.3) Políticas VPD en esquemas sensibles
+Esperado: todas con ENABLE = 'YES'
+============================================================
+
+OBJECT_OWNER
+--------------------------------------------------------------------------------------------------------------------------------
+OBJECT_NAME
+--------------------------------------------------------------------------------------------------------------------------------
+POLICY_NAME                                                                                                                      ENA
+-------------------------------------------------------------------------------------------------------------------------------- ---
+RRHH
+EMPLEADOS
+PF_DEPARTAMENTO                                                                                                                  YES
+
+
+1 fila seleccionada.
+
+============================================================
+PT-09 (CO-09, A8.5) Política de contraseñas por perfil
+Esperado: FAILED_LOGIN_ATTEMPTS <= 5, PASSWORD_LIFE_TIME <= 90,
+función de verificación definida; 0 cuentas con perfil DEFAULT
+============================================================
+
+PROFILE                                                                                                                          RESOURCE_NAME
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------
+LIMIT
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+DEFAULT                                                                                                                          FAILED_LOGIN_ATTEMPTS
+10
+
+DEFAULT                                                                                                                          PASSWORD_LIFE_TIME
+UNLIMITED
+
+DEFAULT                                                                                                                          PASSWORD_LOCK_TIME
+1
+
+DEFAULT                                                                                                                          PASSWORD_VERIFY_FUNCTION
+NULL
+
+ORA_CIS_PROFILE                                                                                                                  FAILED_LOGIN_ATTEMPTS
+5
+
+ORA_CIS_PROFILE                                                                                                                  PASSWORD_LIFE_TIME
+90
+
+ORA_CIS_PROFILE                                                                                                                  PASSWORD_LOCK_TIME
+1
+
+ORA_CIS_PROFILE                                                                                                                  PASSWORD_VERIFY_FUNCTION
+ORA12C_VERIFY_FUNCTION
+
+ORA_STIG_PROFILE                                                                                                                 FAILED_LOGIN_ATTEMPTS
+3
+
+ORA_STIG_PROFILE                                                                                                                 PASSWORD_LIFE_TIME
+35
+
+ORA_STIG_PROFILE                                                                                                                 PASSWORD_LOCK_TIME
+UNLIMITED
+
+ORA_STIG_PROFILE                                                                                                                 PASSWORD_VERIFY_FUNCTION
+ORA12C_STIG_VERIFY_FUNCTION
+
+PERFIL_FUNCIONARIO                                                                                                               FAILED_LOGIN_ATTEMPTS
+3
+
+PERFIL_FUNCIONARIO                                                                                                               PASSWORD_LIFE_TIME
+90
+
+PERFIL_FUNCIONARIO                                                                                                               PASSWORD_LOCK_TIME
+1
+
+PERFIL_FUNCIONARIO                                                                                                               PASSWORD_VERIFY_FUNCTION
+ORA12C_STRONG_VERIFY_FUNCTION
+
+
+16 filas seleccionadas.
+
+
+USERNAME
+--------------------------------------------------------------------------------------------------------------------------------
+RRHH
+
+1 fila seleccionada.
+
+============================================================
+PT-10 (CO-10, A8.10) Objetos de esquemas sensibles en la papelera
+Esperado: 0 filas. Complementar en RMAN con: SHOW RETENTION POLICY
+============================================================
+
+ninguna fila seleccionada
+
+============================================================
+PT-11 (CO-11, A8.11) Columnas sensibles sin política de redacción
+Esperado: 0 filas
+============================================================
+
+ninguna fila seleccionada
+
+
+OBJECT_OWNER
+--------------------------------------------------------------------------------------------------------------------------------
+OBJECT_NAME
+--------------------------------------------------------------------------------------------------------------------------------
+POLICY_NAME                                                                                                                      ENA
+-------------------------------------------------------------------------------------------------------------------------------- ---
+RRHH
+EMPLEADOS
+RED_EMPLEADOS                                                                                                                    YES
+
+
+1 fila seleccionada.
+
+============================================================
+PT-12 (CO-12, A8.12) Keystore, tablespaces cifrados y roles de exportación
+Esperado: STATUS = OPEN; ENCRYPTED = YES; roles solo en cuentas autorizadas
+============================================================
+
+WRL_TYPE             STATUS                         WALLET_TYPE
+-------------------- ------------------------------ --------------------
+FILE                 NOT_AVAILABLE                  UNKNOWN
+
+1 fila seleccionada.
+
+
+TABLESPACE_NAME                ENC
+------------------------------ ---
+USERS                          NO
+TS_DIM                         NO
+TS_REL                         NO
+TS_FACT                        NO
+TS_IDX                         NO
+MEX4_A1                        NO
+MEX4_A2                        NO
+MEX4_A3                        NO
+MEX4_IPK                       NO
+MEX4_IFK                       NO
+TBS_PRUEBA                     NO
+TBS_DISCO                      NO
+
+12 filas seleccionadas.
+
+
+ninguna fila seleccionada
+
+============================================================
+PT-13 (CO-13, A8.13) Modo de archivado, último respaldo y piezas sin cifrar
+Esperado: ARCHIVELOG; respaldo de menos de 24 h; 0 piezas sin cifrar
+============================================================
+
+LOG_MODE
+------------
+ARCHIVELOG
+
+1 fila seleccionada.
+
+
+ULTIMO_R
+--------
+
+
+1 fila seleccionada.
+
+
+PIEZAS_SIN_CIFRAR
+-----------------
+               16
+
+1 fila seleccionada.
+
+============================================================
+PT-14 (CO-14, A8.15) Políticas de auditoría habilitadas y eventos recientes
+Esperado: políticas de inicios fallidos y de tablas sensibles; eventos en 7 días
+============================================================
+
+POLICY_NAME                                                                                                                      ENABLED_OPTION
+-------------------------------------------------------------------------------------------------------------------------------- ---------------
+ENTITY_NAME
+--------------------------------------------------------------------------------------------------------------------------------
+ORA_SECURECONFIG                                                                                                                 BY USER
+ALL USERS
+
+ORA_LOGON_FAILURES                                                                                                               BY USER
+ALL USERS
+
+POL_RRHH_LECTURA                                                                                                                 BY USER
+ALL USERS
+
+
+3 filas seleccionadas.
+
+
+ACTION_NAME                                                         EVENTOS
+---------------------------------------------------------------- ----------
+LOGON                                                                    45
+GRANT                                                                    26
+DROP USER                                                                23
+CREATE USER                                                              19
+ALTER USER                                                               15
+SELECT                                                                   15
+DROP AUDIT POLICY                                                         9
+CREATE AUDIT POLICY                                                       9
+AUDIT                                                                     6
+NOAUDIT                                                                   5
+CREATE ROLE                                                               4
+DROP ROLE                                                                 4
+REVOKE                                                                    3
+CREATE PROFILE                                                            2
+CREATE TABLE                                                              2
+CREATE FUNCTION                                                           1
+ALTER PROFILE                                                             1
+EXECUTE                                                                   1
+
+18 filas seleccionadas.
+
+============================================================
+PT-15 (CO-15, A8.20) Cifrado de la conexión actual
+Esperado: aparece un servicio de cifrado (por ejemplo AES256)
+Además revisar sqlnet.ora: SQLNET.ENCRYPTION_SERVER = REQUIRED,
+TCP.VALIDNODE_CHECKING = YES, TCP.INVITED_NODES
+============================================================
+
+NETWORK_SERVICE_BANNER
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Windows NT TCP/IP NT Protocol Adapter for 64-bit Windows: Version 21.0.0.0.0 - Production
+Authentication service for 64-bit Windows: Version 21.0.1.0.0 - Production
+NTS Authentication service adapter for 64-bit Windows: Version 2.0.0.0.0 - Production
+Encryption service for 64-bit Windows: Version 21.0.1.0.0 - Production
+AES256 Encryption service adapter for 64-bit Windows: Version 21.0.1.0.0 - Production
+Crypto-checksumming service for 64-bit Windows: Version 21.0.1.0.0 - Production
+SHA256 Crypto-checksumming service adapter for 64-bit Windows: Version 21.0.1.0.0 - Production
+
+7 filas seleccionadas.

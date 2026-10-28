@@ -1,0 +1,22 @@
+# Archivos de trabajo de Oracle y de los editores
+*.log
+*.bak
+*.tmp
+*.swp
+~$*
+.DS_Store
+Thumbs.db
+
+# Reportes muy grandes o intentos descartados (se conservan fuera del repositorio)
+*_completo.txt
+
+# Nunca subir credenciales, wallets ni respaldos
+*.ora
+*.sso
+*.p12
+ewallet.*
+cwallet.*
+*.bkp
+*.BKP
+*.dmp
+*.rcv

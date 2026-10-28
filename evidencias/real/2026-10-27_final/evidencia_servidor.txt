@@ -1,0 +1,388 @@
+RMAN> CONFIGURE RETENTION POLICY TO RECOVERY WINDOW OF 14 DAYS;
+
+se utiliza el archivo de control de la base de datos destino en lugar del catßlogo de recuperaci¾n
+parßmetros de configuraci¾n de RMAN de antiguos:
+CONFIGURE RETENTION POLICY TO REDUNDANCY 2;
+parßmetros de configuraci¾n de RMAN nuevos:
+CONFIGURE RETENTION POLICY TO RECOVERY WINDOW OF 14 DAYS;
+se han almacenado correctamente los parßmetros de configuraci¾n de RMAN nuevos
+
+RMAN> CONFIGURE CONTROLFILE AUTOBACKUP ON;
+
+parßmetros de configuraci¾n de RMAN de antiguos:
+CONFIGURE CONTROLFILE AUTOBACKUP ON;
+parßmetros de configuraci¾n de RMAN nuevos:
+CONFIGURE CONTROLFILE AUTOBACKUP ON;
+se han almacenado correctamente los parßmetros de configuraci¾n de RMAN nuevos
+
+RMAN> SET ENCRYPTION ON IDENTIFIED BY "TuClaveRespaldo#1" ONLY;
+
+ejecutando el comando: SET encryption
+
+RMAN> SET ENCRYPTION ON IDENTIFIED BY "*******" ONLY;
+
+ejecutando el comando: SET encryption
+
+RMAN> BACKUP DATABASE PLUS ARCHIVELOG;
+
+
+Empezando backup a las 25/10/26
+log actual archivado
+canal asignado: ORA_DISK_1
+canal ORA_DISK_1: SID=250 tipo de dispositivo=DISK
+canal ORA_DISK_1: iniciando juego de copias de seguridad de archive log comprimido
+canal ORA_DISK_1: especificando archive log(s) en el juego de copias de seguridad
+thread de archive log de entrada=1 secuencia=1 RECID=51 STAMP=1246614945
+thread de archive log de entrada=1 secuencia=2 RECID=52 STAMP=1246615113
+thread de archive log de entrada=1 secuencia=3 RECID=53 STAMP=1246655916
+thread de archive log de entrada=1 secuencia=4 RECID=54 STAMP=1246656104
+thread de archive log de entrada=1 secuencia=5 RECID=55 STAMP=1246799503
+thread de archive log de entrada=1 secuencia=6 RECID=56 STAMP=1246977636
+thread de archive log de entrada=1 secuencia=7 RECID=57 STAMP=1247482570
+thread de archive log de entrada=1 secuencia=8 RECID=58 STAMP=1247597496
+canal ORA_DISK_1: iniciando parte 1 en 25/10/26
+canal ORA_DISK_1: finalizando parte 1 en 25/10/26
+manejador de parte=C:\TLD\BACKUP\XE_20261025_2H55PKTR_81_1_1.BKP etiqueta=TAG20261025T185138 comentario=NONE
+canal ORA_DISK_1: juego de copias de seguridad terminado, tiempo transcurrido: 00:00:35
+canal ORA_DISK_1: iniciando juego de copias de seguridad de archive log comprimido
+canal ORA_DISK_1: especificando archive log(s) en el juego de copias de seguridad
+thread de archive log de entrada=1 secuencia=59 RECID=18 STAMP=1246377465
+thread de archive log de entrada=1 secuencia=60 RECID=21 STAMP=1246444565
+thread de archive log de entrada=1 secuencia=61 RECID=19 STAMP=1246444565
+thread de archive log de entrada=1 secuencia=62 RECID=20 STAMP=1246444565
+thread de archive log de entrada=1 secuencia=63 RECID=23 STAMP=1246444677
+thread de archive log de entrada=1 secuencia=64 RECID=22 STAMP=1246444677
+thread de archive log de entrada=1 secuencia=65 RECID=24 STAMP=1246444679
+thread de archive log de entrada=1 secuencia=66 RECID=25 STAMP=1246445213
+thread de archive log de entrada=1 secuencia=67 RECID=26 STAMP=1246445388
+thread de archive log de entrada=1 secuencia=68 RECID=27 STAMP=1246445746
+thread de archive log de entrada=1 secuencia=69 RECID=28 STAMP=1246568257
+thread de archive log de entrada=1 secuencia=70 RECID=29 STAMP=1246568328
+thread de archive log de entrada=1 secuencia=71 RECID=30 STAMP=1246568485
+thread de archive log de entrada=1 secuencia=72 RECID=31 STAMP=1246568721
+thread de archive log de entrada=1 secuencia=73 RECID=32 STAMP=1246570089
+thread de archive log de entrada=1 secuencia=74 RECID=33 STAMP=1246570726
+thread de archive log de entrada=1 secuencia=75 RECID=34 STAMP=1246608913
+thread de archive log de entrada=1 secuencia=76 RECID=35 STAMP=1246609110
+thread de archive log de entrada=1 secuencia=77 RECID=36 STAMP=1246609491
+thread de archive log de entrada=1 secuencia=78 RECID=37 STAMP=1246610880
+thread de archive log de entrada=1 secuencia=79 RECID=38 STAMP=1246611217
+thread de archive log de entrada=1 secuencia=80 RECID=39 STAMP=1246611338
+thread de archive log de entrada=1 secuencia=81 RECID=40 STAMP=1246611430
+thread de archive log de entrada=1 secuencia=82 RECID=41 STAMP=1246611445
+thread de archive log de entrada=1 secuencia=83 RECID=42 STAMP=1246611463
+thread de archive log de entrada=1 secuencia=84 RECID=43 STAMP=1246611469
+thread de archive log de entrada=1 secuencia=85 RECID=44 STAMP=1246612771
+thread de archive log de entrada=1 secuencia=86 RECID=45 STAMP=1246613758
+thread de archive log de entrada=1 secuencia=87 RECID=46 STAMP=1246613903
+thread de archive log de entrada=1 secuencia=88 RECID=47 STAMP=1246613985
+thread de archive log de entrada=1 secuencia=89 RECID=48 STAMP=1246613985
+thread de archive log de entrada=1 secuencia=90 RECID=49 STAMP=1246614061
+thread de archive log de entrada=1 secuencia=91 RECID=50 STAMP=1246614062
+canal ORA_DISK_1: iniciando parte 1 en 25/10/26
+canal ORA_DISK_1: finalizando parte 1 en 25/10/26
+manejador de parte=C:\TLD\BACKUP\XE_20261025_2I55PKUU_82_1_1.BKP etiqueta=TAG20261025T185138 comentario=NONE
+canal ORA_DISK_1: juego de copias de seguridad terminado, tiempo transcurrido: 00:00:25
+Se ha finalizado backup a las 25/10/26
+
+Empezando backup a las 25/10/26
+usando el canal ORA_DISK_1
+canal ORA_DISK_1: iniciando juego de copias de seguridad de archivo de datos completo comprimido
+canal ORA_DISK_1: especificando archivo(s) de datos en el juego de copias de seguridad
+n·mero de archivo de datos de entrada=00033 nombre=C:\ORADATA\MEX4\A1\MEX4_A1_01.DBF
+n·mero de archivo de datos de entrada=00034 nombre=C:\ORADATA\MEX4\A2\MEX4_A2_01.DBF
+n·mero de archivo de datos de entrada=00035 nombre=C:\ORADATA\MEX4\A3\MEX4_A3_01.DBF
+n·mero de archivo de datos de entrada=00010 nombre=C:\APP\GLORI\PRODUCT\21C\ORADATA\XE\XEPDB1\SYSAUX01.DBF
+n·mero de archivo de datos de entrada=00009 nombre=C:\APP\GLORI\PRODUCT\21C\ORADATA\XE\XEPDB1\SYSTEM01.DBF
+n·mero de archivo de datos de entrada=00031 nombre=C:\APP\GLORI\PRODUCT\21C\ORADATA\XE\XEPDB1\TS_FACT01.DBF
+n·mero de archivo de datos de entrada=00036 nombre=C:\ORADATA\MEX4\IPK\MEX4_IPK_01.DBF
+n·mero de archivo de datos de entrada=00037 nombre=C:\ORADATA\MEX4\IFK\MEX4_IFK_01.DBF
+n·mero de archivo de datos de entrada=00032 nombre=C:\APP\GLORI\PRODUCT\21C\ORADATA\XE\XEPDB1\TS_IDX01.DBF
+n·mero de archivo de datos de entrada=00011 nombre=C:\APP\GLORI\PRODUCT\21C\ORADATA\XE\XEPDB1\UNDOTBS01.DBF
+n·mero de archivo de datos de entrada=00029 nombre=C:\APP\GLORI\PRODUCT\21C\ORADATA\XE\XEPDB1\TS_DIM01.DBF
+n·mero de archivo de datos de entrada=00030 nombre=C:\APP\GLORI\PRODUCT\21C\ORADATA\XE\XEPDB1\TS_REL01.DBF
+n·mero de archivo de datos de entrada=00038 nombre=C:\APP\GLORI\PRODUCT\21C\ORADATA\XE\XEPDB1\TBS_PRUEBA01.DBF
+n·mero de archivo de datos de entrada=00039 nombre=C:\APP\GLORI\PRODUCT\21C\ORADATA\XE\XEPDB1\TBS_PRUEBA02.DBF
+n·mero de archivo de datos de entrada=00040 nombre=C:\ORADATA\DISCO_NUEVO\TBS_DISCO01.DBF
+n·mero de archivo de datos de entrada=00041 nombre=C:\ORADATA\DISCO_NUEVO\TBS_DISCO02.DBF
+n·mero de archivo de datos de entrada=00012 nombre=C:\APP\GLORI\PRODUCT\21C\ORADATA\XE\XEPDB1\USERS01.DBF
+canal ORA_DISK_1: iniciando parte 1 en 25/10/26
+canal ORA_DISK_1: finalizando parte 1 en 25/10/26
+manejador de parte=C:\TLD\BACKUP\XE_20261025_2J55PKVQ_83_1_1.BKP etiqueta=TAG20261025T185241 comentario=NONE
+canal ORA_DISK_1: juego de copias de seguridad terminado, tiempo transcurrido: 00:00:35
+canal ORA_DISK_1: iniciando juego de copias de seguridad de archivo de datos completo comprimido
+canal ORA_DISK_1: especificando archivo(s) de datos en el juego de copias de seguridad
+n·mero de archivo de datos de entrada=00001 nombre=C:\APP\GLORI\PRODUCT\21C\ORADATA\XE\SYSTEM01.DBF
+n·mero de archivo de datos de entrada=00003 nombre=C:\APP\GLORI\PRODUCT\21C\ORADATA\XE\SYSAUX01.DBF
+n·mero de archivo de datos de entrada=00004 nombre=C:\APP\GLORI\PRODUCT\21C\ORADATA\XE\UNDOTBS01.DBF
+n·mero de archivo de datos de entrada=00007 nombre=C:\APP\GLORI\PRODUCT\21C\ORADATA\XE\USERS01.DBF
+canal ORA_DISK_1: iniciando parte 1 en 25/10/26
+canal ORA_DISK_1: finalizando parte 1 en 25/10/26
+manejador de parte=C:\TLD\BACKUP\XE_20261025_2K55PL0U_84_1_1.BKP etiqueta=TAG20261025T185241 comentario=NONE
+canal ORA_DISK_1: juego de copias de seguridad terminado, tiempo transcurrido: 00:01:26
+canal ORA_DISK_1: iniciando juego de copias de seguridad de archivo de datos completo comprimido
+canal ORA_DISK_1: especificando archivo(s) de datos en el juego de copias de seguridad
+n·mero de archivo de datos de entrada=00006 nombre=C:\APP\GLORI\PRODUCT\21C\ORADATA\XE\PDBSEED\SYSAUX01.DBF
+n·mero de archivo de datos de entrada=00005 nombre=C:\APP\GLORI\PRODUCT\21C\ORADATA\XE\PDBSEED\SYSTEM01.DBF
+n·mero de archivo de datos de entrada=00008 nombre=C:\APP\GLORI\PRODUCT\21C\ORADATA\XE\PDBSEED\UNDOTBS01.DBF
+canal ORA_DISK_1: iniciando parte 1 en 25/10/26
+canal ORA_DISK_1: finalizando parte 1 en 25/10/26
+manejador de parte=C:\TLD\BACKUP\XE_20261025_2L55PL3K_85_1_1.BKP etiqueta=TAG20261025T185241 comentario=NONE
+canal ORA_DISK_1: juego de copias de seguridad terminado, tiempo transcurrido: 00:00:25
+Se ha finalizado backup a las 25/10/26
+
+Empezando backup a las 25/10/26
+log actual archivado
+usando el canal ORA_DISK_1
+canal ORA_DISK_1: iniciando juego de copias de seguridad de archive log comprimido
+canal ORA_DISK_1: especificando archive log(s) en el juego de copias de seguridad
+thread de archive log de entrada=1 secuencia=9 RECID=59 STAMP=1247597709
+canal ORA_DISK_1: iniciando parte 1 en 25/10/26
+canal ORA_DISK_1: finalizando parte 1 en 25/10/26
+manejador de parte=C:\TLD\BACKUP\XE_20261025_2M55PL4E_86_1_1.BKP etiqueta=TAG20261025T185510 comentario=NONE
+canal ORA_DISK_1: juego de copias de seguridad terminado, tiempo transcurrido: 00:00:01
+Se ha finalizado backup a las 25/10/26
+
+Empezando Control File and SPFILE Autobackup a las 25/10/26
+manejador de parte=C:\ORADATA\FRA\XE\AUTOBACKUP\2026_10_25\O1_MF_S_1247597711_OFX97JF3_.BKP comentario=NONE
+Se ha finalizado Control File and SPFILE Autobackup a las 25/10/26
+
+RMAN>
+
+RMAN> DELETE NOPROMPT OBSOLETE;
+
+la polÝtica de retenci¾n de RMAN se aplicarß al comando
+la polÝtica de retenci¾n de RMAN estß definida en una ventana de recuperaci¾n de 14 dÝas
+RMAN-07553: Advertencia: RECOVERY WINDOW es superior a CONTROL_FILE_RECORD_KEEP_TIME
+usando el canal ORA_DISK_1
+Suprimiendo las siguientes copias y copias de seguridad obsoletas:
+Tipo                 Clave  Hora Finalizaci¾n  Nom.Archivo/Manejador
+-------------------- ------ ------------------ --------------------
+Juego de Copias de Seguridad           23     15/09/26
+  Parte de Copia de Seguridad       23     15/09/26           C:\APP\GLORI\PRODUCT\21C\DBHOMEXE\DATABASE\0N52D4GT_23_1_1
+Juego de Copias de Seguridad           24     15/09/26
+  Parte de Copia de Seguridad       24     15/09/26           C:\APP\GLORI\PRODUCT\21C\DBHOMEXE\DATABASE\0O52D4HD_24_1_1
+Juego de Copias de Seguridad           27     15/09/26
+  Parte de Copia de Seguridad       27     15/09/26           C:\APP\GLORI\PRODUCT\21C\DBHOMEXE\DATABASE\C-3119905589-20260915-01
+Juego de Copias de Seguridad           28     30/09/26
+  Parte de Copia de Seguridad       28     30/09/26           C:\TLD\BACKUP\XE_20260930_0S53L9B8_28_1_1.BKP
+Juego de Copias de Seguridad           29     30/09/26
+  Parte de Copia de Seguridad       29     30/09/26           C:\TLD\BACKUP\XE_20260930_0T53L9BH_29_1_1.BKP
+Juego de Copias de Seguridad           30     30/09/26
+  Parte de Copia de Seguridad       30     30/09/26           C:\TLD\BACKUP\XE_20260930_0U53L9CB_30_1_1.BKP
+Juego de Copias de Seguridad           31     30/09/26
+  Parte de Copia de Seguridad       31     30/09/26           C:\TLD\BACKUP\XE_20260930_0V53L9F0_31_1_1.BKP
+Juego de Copias de Seguridad           32     30/09/26
+  Parte de Copia de Seguridad       32     30/09/26           C:\TLD\BACKUP\XE_20260930_1053L9FQ_32_1_1.BKP
+Juego de Copias de Seguridad           33     30/09/26
+  Parte de Copia de Seguridad       33     30/09/26           C:\TLD\BACKUP\XE_20260930_1153L9FS_33_1_1.BKP
+Juego de Copias de Seguridad           34     30/09/26
+  Parte de Copia de Seguridad       34     30/09/26           C:\TLD\BACKUP\XE_20260930_1253L9FU_34_1_1.BKP
+Juego de Copias de Seguridad           35     30/09/26
+  Parte de Copia de Seguridad       35     30/09/26           C:\APP\GLORI\PRODUCT\21C\DBHOMEXE\DATABASE\C-3119905589-20260930-00
+Juego de Copias de Seguridad           36     30/09/26
+  Parte de Copia de Seguridad       36     30/09/26           C:\TLD\BACKUP\XE_20260930_1453LDEC_36_1_1.BKP
+Juego de Copias de Seguridad           39     30/09/26
+  Parte de Copia de Seguridad       39     30/09/26           C:\TLD\BACKUP\XE_20260930_1753LDGB_39_1_1.BKP
+Juego de Copias de Seguridad           41     30/09/26
+  Parte de Copia de Seguridad       41     30/09/26           C:\TLD\BACKUP\XE_20260930_1953LDGR_41_1_1.BKP
+Juego de Copias de Seguridad           42     30/09/26
+  Parte de Copia de Seguridad       42     30/09/26           C:\TLD\BACKUP\XE_20260930_1A53LDGU_42_1_1.BKP
+Juego de Copias de Seguridad           43     30/09/26
+  Parte de Copia de Seguridad       43     30/09/26           C:\APP\GLORI\PRODUCT\21C\DBHOMEXE\DATABASE\C-3119905589-20260930-01
+Juego de Copias de Seguridad           44     01/10/26
+  Parte de Copia de Seguridad       44     01/10/26           C:\TLD\BACKUP\XE_20261001_1C53Q9NL_44_1_1.BKP
+Juego de Copias de Seguridad           45     01/10/26
+  Parte de Copia de Seguridad       45     01/10/26           C:\TLD\BACKUP\XE_20261001_1D53Q9NN_45_1_1.BKP
+Juego de Copias de Seguridad           46     01/10/26
+  Parte de Copia de Seguridad       46     01/10/26           C:\APP\GLORI\PRODUCT\21C\DBHOMEXE\DATABASE\C-3119905589-20261001-00
+Juego de Copias de Seguridad           47     01/10/26
+  Parte de Copia de Seguridad       47     01/10/26           C:\TLD\BACKUP\XE_20261001_1F53QA4J_47_1_1.BKP
+Juego de Copias de Seguridad           48     01/10/26
+  Parte de Copia de Seguridad       48     01/10/26           C:\TLD\BACKUP\XE_20261001_1G53QA4M_48_1_1.BKP
+Juego de Copias de Seguridad           49     01/10/26
+  Parte de Copia de Seguridad       49     01/10/26           C:\APP\GLORI\PRODUCT\21C\DBHOMEXE\DATABASE\C-3119905589-20261001-01
+Juego de Copias de Seguridad           50     01/10/26
+  Parte de Copia de Seguridad       50     01/10/26           C:\TLD\BACKUP\XE_20261001_1I53QA8D_50_1_1.BKP
+Juego de Copias de Seguridad           51     01/10/26
+  Parte de Copia de Seguridad       51     01/10/26           C:\TLD\BACKUP\XE_20261001_1J53QA8G_51_1_1.BKP
+parte de la copia de seguridad suprimida
+manejador de parte de copia de seguridad=C:\APP\GLORI\PRODUCT\21C\DBHOMEXE\DATABASE\0N52D4GT_23_1_1 RECID=23 STAMP=1244041758
+parte de la copia de seguridad suprimida
+manejador de parte de copia de seguridad=C:\APP\GLORI\PRODUCT\21C\DBHOMEXE\DATABASE\0O52D4HD_24_1_1 RECID=24 STAMP=1244041773
+parte de la copia de seguridad suprimida
+manejador de parte de copia de seguridad=C:\APP\GLORI\PRODUCT\21C\DBHOMEXE\DATABASE\C-3119905589-20260915-01 RECID=27 STAMP=1244041808
+parte de la copia de seguridad suprimida
+manejador de parte de copia de seguridad=C:\TLD\BACKUP\XE_20260930_0S53L9B8_28_1_1.BKP RECID=28 STAMP=1245357417
+parte de la copia de seguridad suprimida
+manejador de parte de copia de seguridad=C:\TLD\BACKUP\XE_20260930_0T53L9BH_29_1_1.BKP RECID=29 STAMP=1245357426
+parte de la copia de seguridad suprimida
+manejador de parte de copia de seguridad=C:\TLD\BACKUP\XE_20260930_0U53L9CB_30_1_1.BKP RECID=30 STAMP=1245357451
+parte de la copia de seguridad suprimida
+manejador de parte de copia de seguridad=C:\TLD\BACKUP\XE_20260930_0V53L9F0_31_1_1.BKP RECID=31 STAMP=1245357536
+parte de la copia de seguridad suprimida
+manejador de parte de copia de seguridad=C:\TLD\BACKUP\XE_20260930_1053L9FQ_32_1_1.BKP RECID=32 STAMP=1245357562
+parte de la copia de seguridad suprimida
+manejador de parte de copia de seguridad=C:\TLD\BACKUP\XE_20260930_1153L9FS_33_1_1.BKP RECID=33 STAMP=1245357565
+parte de la copia de seguridad suprimida
+manejador de parte de copia de seguridad=C:\TLD\BACKUP\XE_20260930_1253L9FU_34_1_1.BKP RECID=34 STAMP=1245357567
+parte de la copia de seguridad suprimida
+manejador de parte de copia de seguridad=C:\APP\GLORI\PRODUCT\21C\DBHOMEXE\DATABASE\C-3119905589-20260930-00 RECID=35 STAMP=1245357568
+parte de la copia de seguridad suprimida
+manejador de parte de copia de seguridad=C:\TLD\BACKUP\XE_20260930_1453LDEC_36_1_1.BKP RECID=36 STAMP=1245361613
+parte de la copia de seguridad suprimida
+manejador de parte de copia de seguridad=C:\TLD\BACKUP\XE_20260930_1753LDGB_39_1_1.BKP RECID=39 STAMP=1245361675
+parte de la copia de seguridad suprimida
+manejador de parte de copia de seguridad=C:\TLD\BACKUP\XE_20260930_1953LDGR_41_1_1.BKP RECID=41 STAMP=1245361693
+parte de la copia de seguridad suprimida
+manejador de parte de copia de seguridad=C:\TLD\BACKUP\XE_20260930_1A53LDGU_42_1_1.BKP RECID=42 STAMP=1245361694
+parte de la copia de seguridad suprimida
+manejador de parte de copia de seguridad=C:\APP\GLORI\PRODUCT\21C\DBHOMEXE\DATABASE\C-3119905589-20260930-01 RECID=43 STAMP=1245361695
+parte de la copia de seguridad suprimida
+manejador de parte de copia de seguridad=C:\TLD\BACKUP\XE_20261001_1C53Q9NL_44_1_1.BKP RECID=44 STAMP=1245521654
+parte de la copia de seguridad suprimida
+manejador de parte de copia de seguridad=C:\TLD\BACKUP\XE_20261001_1D53Q9NN_45_1_1.BKP RECID=45 STAMP=1245521655
+parte de la copia de seguridad suprimida
+manejador de parte de copia de seguridad=C:\APP\GLORI\PRODUCT\21C\DBHOMEXE\DATABASE\C-3119905589-20261001-00 RECID=46 STAMP=1245521657
+parte de la copia de seguridad suprimida
+manejador de parte de copia de seguridad=C:\TLD\BACKUP\XE_20261001_1F53QA4J_47_1_1.BKP RECID=47 STAMP=1245522068
+parte de la copia de seguridad suprimida
+manejador de parte de copia de seguridad=C:\TLD\BACKUP\XE_20261001_1G53QA4M_48_1_1.BKP RECID=48 STAMP=1245522070
+parte de la copia de seguridad suprimida
+manejador de parte de copia de seguridad=C:\APP\GLORI\PRODUCT\21C\DBHOMEXE\DATABASE\C-3119905589-20261001-01 RECID=49 STAMP=1245522071
+parte de la copia de seguridad suprimida
+manejador de parte de copia de seguridad=C:\TLD\BACKUP\XE_20261001_1I53QA8D_50_1_1.BKP RECID=50 STAMP=1245522190
+parte de la copia de seguridad suprimida
+manejador de parte de copia de seguridad=C:\TLD\BACKUP\XE_20261001_1J53QA8G_51_1_1.BKP RECID=51 STAMP=1245522192
+24 objetos suprimidos
+
+
+RMAN> SHOW RETENTION POLICY;
+
+Los parßmetros de configuraci¾n de RMAN para la base de datos con db_unique_name XE son:
+CONFIGURE RETENTION POLICY TO RECOVERY WINDOW OF 14 DAYS;
+
+RMAN> LIST BACKUP SUMMARY;
+
+
+Lista de Copias de Seguridad
+===============
+Clave     TY LV S Tipo de Dispositivo Hora de Finalizaci¾n N·mero de Parte N·mero de Copia Comprimido Etiqueta
+------- -- -- - ----------- -------------------- ------- ------- ---------- ---
+37      B  0  A DISK        30/09/26             1       1       YES        TAG20260930T214654
+38      B  0  A DISK        30/09/26             1       1       YES        TAG20260930T214654
+40      B  A  A DISK        30/09/26             1       1       YES        EST002_XEREALGLORIA
+52      B  F  A DISK        01/10/26             1       1       YES        TAG20261001T182313
+53      B  A  A DISK        12/10/26             1       1       YES        TAG20261012T104654
+54      B  F  A DISK        12/10/26             1       1       YES        TAG20261012T104730
+55      B  F  A DISK        12/10/26             1       1       YES        TAG20261012T104730
+56      B  F  A DISK        12/10/26             1       1       YES        TAG20261012T104934
+57      B  F  A DISK        12/10/26             1       1       YES        TAG20261012T104730
+58      B  A  A DISK        12/10/26             1       1       YES        TAG20261012T104948
+59      B  F  A DISK        12/10/26             1       1       YES        TAG20261012T104950
+60      B  A  A DISK        13/10/26             1       1       YES        TAG20261013T205849
+61      B  F  A DISK        13/10/26             1       1       YES        TAG20261013T205937
+62      B  F  A DISK        13/10/26             1       1       YES        TAG20261013T205937
+63      B  F  A DISK        13/10/26             1       1       YES        TAG20261013T205937
+64      B  A  A DISK        13/10/26             1       1       YES        TAG20261013T210125
+65      B  F  A DISK        13/10/26             1       1       YES        TAG20261013T210126
+66      B  F  A DISK        14/10/26             1       1       YES        TAG20261014T091716
+67      B  A  A DISK        14/10/26             1       1       YES        TAG20261014T093600
+68      B  F  A DISK        14/10/26             1       1       YES        TAG20261014T093616
+69      B  F  A DISK        14/10/26             1       1       YES        TAG20261014T093616
+70      B  F  A DISK        14/10/26             1       1       YES        TAG20261014T093616
+71      B  A  A DISK        14/10/26             1       1       YES        TAG20261014T093824
+72      B  F  A DISK        14/10/26             1       1       YES        TAG20261014T093825
+73      B  F  A DISK        14/10/26             1       1       YES        TAG20261014T095051
+74      B  A  A DISK        14/10/26             1       1       YES        TAG20261014T095547
+75      B  A  A DISK        14/10/26             1       1       YES        TAG20261014T095547
+76      B  F  A DISK        14/10/26             1       1       YES        TAG20261014T095605
+77      B  F  A DISK        14/10/26             1       1       YES        TAG20261014T095605
+78      B  F  A DISK        14/10/26             1       1       YES        TAG20261014T095605
+79      B  A  A DISK        14/10/26             1       1       YES        TAG20261014T095833
+80      B  F  A DISK        14/10/26             1       1       YES        TAG20261014T095834
+81      B  A  A DISK        25/10/26             1       1       YES        TAG20261025T185138
+82      B  A  A DISK        25/10/26             1       1       YES        TAG20261025T185138
+83      B  F  A DISK        25/10/26             1       1       YES        TAG20261025T185241
+84      B  F  A DISK        25/10/26             1       1       YES        TAG20261025T185241
+85      B  F  A DISK        25/10/26             1       1       YES        TAG20261025T185241
+86      B  A  A DISK        25/10/26             1       1       YES        TAG20261025T185510
+87      B  F  A DISK        25/10/26             1       1       YES        TAG20261025T185511
+
+RMAN> Exit
+
+
+Recovery Manager terminado.
+
+C:\Users\glori>   lsnrctl stop
+
+LSNRCTL for 64-bit Windows: Version 21.0.0.0.0 - Production on 25-OCT-2026 18:58:53
+
+Copyright (c) 1991, 2021, Oracle.  All rights reserved.
+
+Conectßndose a (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=GlorianaSojo.bbrouter)(PORT=1521)))
+TNS-12586: Message 12586 not found;  product=NETWORK; facility=TNS
+
+ TNS-01190: El usuario no estß autorizado para ejecutar el comando de listener solicitado
+
+C:\Users\glori>   lsnrctl start
+
+LSNRCTL for 64-bit Windows: Version 21.0.0.0.0 - Production on 25-OCT-2026 18:58:53
+
+Copyright (c) 1991, 2021, Oracle.  All rights reserved.
+
+TNS-01106: El listener que utiliza el nombre de listener LISTENER ya ha sido iniciado
+
+
+NETWORK_SERVICE_BANNER
+------------------------------------------------------------------------------------
+Windows NT TCP/IP NT Protocol Adapter for 64-bit Windows: Version 21.0.0.0.0 - Production
+Encryption service for 64-bit Windows: Version 21.0.1.0.0 - Production
+Crypto-checksumming service for 64-bit Windows: Version 21.0.1.0.0 - Production
+
+
+C:\Windows\System32>orabasehome
+C:\app\glori\product\21c\homes\OraDB21Home1
+
+
+C:\Windows\System32>tnsping localhost:1521/XEPDB1
+
+TNS Ping Utility for 64-bit Windows: Version 21.0.0.0.0 - Production on 27-OCT-2026 14:29:33
+
+Copyright (c) 1997, 2021, Oracle.  All rights reserved.
+
+Archivos de parßmetros utilizados:
+C:\app\glori\product\21c\homes\OraDB21Home1\network\admin\sqlnet.ora
+
+Adaptador EZCONNECT utilizado para resolver el alias
+Intentando contactar con (DESCRIPTION=(CONNECT_DATA=(SERVICE_NAME=XEPDB1))(ADDRESS=(PROTOCOL=tcp)(HOST=127.0.0.1)(PORT=1521)))
+Realizado correctamente (0 mseg)
+
+C:\Windows\System32>type "C:\app\glori\product\21c\homes\OraDB21Home1\network\admin\sqlnet.ora"
+# sqlnet.ora Network Configuration File: C:\app\glori\product\21c\homes\OraDB21Home1\NETWORK\ADMIN\sqlnet.ora
+# Generated by Oracle configuration tools.
+
+# This file is actually generated by netca. But if customers choose to
+# install "Software Only", this file wont exist and without the native
+# authentication, they will not be able to connect to the database on NT.
+
+SQLNET.AUTHENTICATION_SERVICES= (NTS)
+
+NAMES.DIRECTORY_PATH= (TNSNAMES, EZCONNECT)
+
+SQLNET.ENCRYPTION_SERVER = REQUIRED
+SQLNET.ENCRYPTION_TYPES_SERVER = (AES256)
+SQLNET.CRYPTO_CHECKSUM_SERVER = REQUIRED
+SQLNET.CRYPTO_CHECKSUM_TYPES_SERVER = (SHA256)
+TCP.VALIDNODE_CHECKING = YES
+TCP.INVITED_NODES = (localhost, 127.0.0.1, ::1, GlorianaSojo)
+SQLNET.ALLOWED_LOGON_VERSION_SERVER = 12a
+
+
+NETWORK_SERVICE_BANNER
+------------------------------------------------------------------------------------
+Windows NT TCP/IP NT Protocol Adapter for 64-bit Windows: Version 21.0.0.0.0 - Production
+Encryption service for 64-bit Windows: Version 21.0.1.0.0 - Production
+AES256 Encryption service adapter for 64-bit Windows: Version 21.0.1.0.0 - Production
+Crypto-checksumming service for 64-bit Windows: Version 21.0.1.0.0 - Production
+SHA256 Crypto-checksumming service adapter for 64-bit Windows: Version 21.0.1.0.0 - Production

@@ -1,0 +1,79 @@
+ACTA DE REVISIÓN DE PRIVILEGIOS
+Control ISO/IEC 27001:2022 A5.18 (Derechos de acceso) · Prueba PT-05
+==============================================================
+
+Empresa / base de datos : Laboratorio UNA · XEPDB1 (Oracle Database 21c XE)
+Captura analizada       : CAP_REVISION (tipo DATABASE)
+Período de captura      : 25/10/2026 18:27 a 27/10/2026 (se detuvo con 05_cerrar_revision_privilegios.sql)
+Fecha de la revisión    : 27/10/2026
+Responsable             : Gloriana Sojo Pereira
+Evidencia de respaldo   : evidencia_revision_privilegios.txt
+
+1. Alcance y limitación
+-----------------------
+La captura registró qué privilegios usó cada cuenta durante las pruebas de
+implementación y las pruebas funcionales. El período es corto (unos dos días)
+y no cubre un ciclo completo de trabajo, por lo que un privilegio "no usado"
+no significa necesariamente que sobre. En producción la captura debería
+cubrir al menos un ciclo mensual antes de revocar.
+
+2. Privilegios usados (resumen)
+-------------------------------
+Todas las cuentas usaron solo CREATE SESSION y lecturas básicas del
+diccionario. Además:
+  - PRUEBA_TI y PRUEBA_CONTA: SELECT sobre RRHH.EMPLEADOS (mediante ROL_RRHH).
+  - AUDITOR_EXT: READ sobre AUDSYS.UNIFIED_AUDIT_TRAIL.
+  - AUDITOR_SEG: AUDIT SYSTEM (creó y borró políticas de auditoría).
+  - ADMIN_BD: SELECT sobre DBA_USERS.
+
+3. Privilegios no usados y decisión
+-----------------------------------
+Cuenta       | Privilegio no usado                         | Decisión     | Justificación
+-------------+---------------------------------------------+--------------+------------------------------------------------
+ADMIN_BD     | CREATE/ALTER/DROP USER, CREATE ROLE,        | Justificar   | Son las funciones del DBA operativo definidas en
+             | CREATE/ALTER PROFILE, CREATE/ALTER          |              | ROL_DBA_OPERATIVO. En el período no hubo tareas
+             | TABLESPACE                                  |              | administrativas. Revisar en la próxima captura.
+ADMIN_BD     | ~4.800 lecturas de vistas del diccionario   | Justificar   | Vienen de SELECT_CATALOG_ROLE, necesario para
+             | (SELECT_CATALOG_ROLE)                       |              | monitorear la base.
+AUDITOR_EXT  | ~4.800 lecturas de vistas del diccionario   | Justificar   | El auditor externo necesita leer la configuración.
+             | (SELECT_CATALOG_ROLE)                       | (mejora)     | Mejora: reemplazar el rol por SELECT sobre las
+             |                                             |              | ~25 vistas que usan las pruebas PT-00 a PT-15.
+AUDITOR_SEG  | AUDIT ANY                                   | Justificar   | Viene del rol AUDIT_ADMIN, que es la función de
+             |                                             |              | la responsable de auditoría.
+TLD_USER     | CREATE TABLE, PROCEDURE, SEQUENCE, TRIGGER, | Justificar   | Cuenta de otro curso, en uso. Excepción
+             | TYPE, CLUSTER, INDEXTYPE, OPERATOR,         | (excepción)  | documentada en el punto 4.
+             | UNLIMITED TABLESPACE, SET CONTAINER,        |              |
+             | ~4.800 lecturas del diccionario             |              |
+
+SYSTEM       | SELECT sobre RRHH.EMPLEADOS                 | REVOCAR      | Lo recibió mediante ROL_RRHH, que Oracle otorga
+             | (mediante ROL_RRHH)                         |              | automáticamente a quien crea un rol. No es una
+             |                                             |              | asignación por función. Acción:
+             |                                             |              |   REVOKE rol_rrhh FROM system;
+             |                                             |              |   REVOKE rol_dba_operativo FROM system;
+             |                                             |              | Ejecutada el ____/____/2026.
+
+Es el único privilegio no usado sobre los esquemas de negocio RRHH y FIN
+(prueba PT-05 de la verificación final, 27/10/2026).
+
+4. Excepción documentada: TLD_USER
+----------------------------------
+TLD_USER es la cuenta de un trabajo de otro curso que se sigue usando en
+esta misma base de laboratorio; sus privilegios de creación de objetos son
+los que ese trabajo necesita. Se mantienen, incluidos UNLIMITED TABLESPACE y
+SET CONTAINER, como excepción aceptada por la responsable.
+
+Riesgo residual: UNLIMITED TABLESPACE permite llenar cualquier tablespace y
+SET CONTAINER permite cambiar de contenedor. La cuenta no tiene privilegios
+sobre RRHH ni FIN, por lo que no afecta la confidencialidad de los datos
+sensibles evaluados.
+
+Condición de la excepción: cuando termine el otro curso, revocar
+UNLIMITED TABLESPACE (reemplazarlo por una cuota) y SET CONTAINER, o
+bloquear la cuenta. Se revisa en la próxima revisión de privilegios.
+
+5. Próxima revisión
+-------------------
+Nueva captura de privilegios durante un mes completo y revisión trimestral
+(próxima: enero de 2027).
+
+Firma de la responsable: Gloriana Sojo P.   Fecha: 27/10/2026

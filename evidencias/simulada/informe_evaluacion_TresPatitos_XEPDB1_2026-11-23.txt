@@ -1,0 +1,62 @@
+INFORME DE EVALUACIÓN DE CONTROLES DE CONFIDENCIALIDAD
+*** SIMULACIÓN ***  La empresa Tres Patitos es ficticia; los resultados son simulados.
+
+Evaluación:  E(Tres Patitos, XEPDB1, 23/11/2026)
+Anterior:    E(Tres Patitos, XEPDB1, 23/10/2026) · RC 53,5 % (Amarillo)
+Motor:       Oracle Database 21c Express Edition
+Auditor:     Gloriana Sojo Pereira
+Cuenta:      AUDITOR_EXT (solo lectura)
+
+1. RESULTADO
+   RC = 76,4 %   Semáforo: VERDE   (+22,9 puntos frente a la evaluación anterior)
+   11 controles cumplen, 1 parcial y 3 no cumplen.
+
+2. RESULTADOS POR CONTROL
+   Control                                     Antes  Ahora  Peso
+   --------------------------------------------------------------
+   CS1 A5.12 Clasificación de información          2      2    16
+      PT-01: 8 de 9 columnas sensibles etiquetadas; falta RRHH.EMPLEADOS.DIRECCION.
+   CS2 A5.15 Control de acceso                     1      3    16
+      Corregido. PT-02: 0 privilegios directos; se revocó el grant a PUBLIC. PF-03: sin rol, ORA-00942.
+   CS3 A5.16 Gestión de identidades                2      3    15
+      Corregido. PT-03: 0 filas; CVARGAS y TEMP_SOPORTE bloqueadas el 27/10/2026.
+   CS4 A5.17 Información de autenticación          3      3    15
+      PT-04: 0 filas. PF-02: ORA-28003, contraseña débil rechazada.
+   CS5 A5.18 Derechos de acceso                    0      0    16
+      Pendiente. PT-05: sin captura de privilegios ni acta de revisión (programada para diciembre).
+   CS6 A5.33 Protección de registros               1      1    12
+      Nivel 1: se designó a la responsable de auditoría, pero ADMIN_BD conserva DBA y AUDIT_ADMIN (PT-06, PF-07).
+   CS7 A8.2 Derechos de acceso privilegiado        2      3    16
+      Corregido. PT-07: rol DBA solo en SYSTEM y ADMIN_BD; sin privilegios ANY en cuentas propias.
+   CS8 A8.3 Restricción de acceso                  3      3    16
+      PT-08: 2 políticas VPD activas. PF-05: cada usuario ve su departamento.
+   CS9 A8.5 Autenticación segura                   3      3    15
+      PT-09: PERFIL_FUNCIONARIO cumple; 0 cuentas DEFAULT. PF-01: ORA-28000.
+   CS10 A8.10 Eliminación de información           2      3    10
+      Corregido. PT-10: papelera de FIN purgada; retención RMAN de 14 días.
+   CS11 A8.11 Enmascaramiento de datos             2      3    16
+      Corregido. PT-11: 0 columnas sensibles sin redacción; nueva política RED_PAGOS. PF-04: redacción en RRHH y FIN.
+   CS12 A8.12 Prevención de fuga de datos          3      3    16
+      PT-12: keystore OPEN; tablespaces cifrados; exportación solo en cuentas autorizadas.
+   CS13 A8.13 Respaldo de la información           2      3    10
+      Corregido. PT-13: respaldo de 22/11 23:51; 0 piezas sin cifrar. PF-08: OK.
+   CS14 A8.15 Registro (logging)                   3      3    12
+      PT-14: 3 políticas activas, 3330 eventos en 7 días. PF-06: lecturas registradas.
+   CS15 A8.20 Seguridad de redes                   0      0    15
+      Pendiente. PT-15: sin cifrado de red; cambio de sqlnet.ora programado para el 07/12/2026.
+   (Antes y Ahora: criterio de madurez 0-4)
+
+3. CORRECCIONES VERIFICADAS
+   - A5.15 y A8.2: privilegios directos y grant a PUBLIC revocados; SOPORTE01 sin DBA; APP_REPORTES sin SELECT ANY TABLE.
+   - A5.16: CVARGAS y TEMP_SOPORTE bloqueadas.
+   - A8.10: papelera de FIN purgada.
+   - A8.11: redacción en FIN.CLIENTES.CORREO y FIN.PAGOS.CUENTA_IBAN (política RED_PAGOS).
+   - A8.13: piezas de respaldo sin cifrar eliminadas tras un respaldo completo cifrado.
+
+4. PENDIENTES
+   - A5.33: traspasar AUDIT_ADMIN de ADMIN_BD a la responsable de auditoría.
+   - A8.20: cifrado de red en sqlnet.ora (ventana de mantenimiento del 07/12/2026).
+   - A5.18: captura de privilegios y acta de revisión trimestral.
+   - A5.12: etiquetar RRHH.EMPLEADOS.DIRECCION.
+
+Anexos: evidencia_verificacion_TresPatitos_XEPDB1_2026-11-23.txt, evidencia_funcional_TresPatitos_XEPDB1_2026-11-23.txt, informe_evaluacion_TresPatitos_XEPDB1_2026-11-23.pdf

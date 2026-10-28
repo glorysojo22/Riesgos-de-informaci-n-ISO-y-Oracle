@@ -1,0 +1,90 @@
+Recovery Manager : Release 21.0.0.0.0 - Production on Mar Oct 27 15:50:30 2026
+Version 21.3.0.0.0
+
+Copyright (c) 1982, 2021, Oracle and/or its affiliates.  All rights reserved.
+
+conectado a la base de datos de destino: XE (DBID=3119905589)
+
+RMAN>
+ejecutando el comando: SET decryption
+se utiliza el archivo de control de la base de datos destino en lugar del cat�logo de recuperaci�n
+
+RMAN>
+Empezando restore a las 27/10/26
+canal asignado: ORA_DISK_1
+canal ORA_DISK_1: SID=758 tipo de dispositivo=DISK
+
+canal ORA_DISK_1: iniciando validaci�n del juego de copias de seguridad del archivo de datos
+canal ORA_DISK_1: leyendo desde la parte de copia de seguridad C:\TLD\BACKUP\XE_20261025_2J55PKVQ_83_1_1.BKP
+canal ORA_DISK_1: manejador de parte=C:\TLD\BACKUP\XE_20261025_2J55PKVQ_83_1_1.BKP etiqueta=TAG20261025T185241
+canal ORA_DISK_1: parte 1 de la copia de seguridad restaurada
+canal ORA_DISK_1: validaci�n terminada, tiempo transcurrido: 00:00:35
+canal ORA_DISK_1: iniciando validaci�n del juego de copias de seguridad del archivo de datos
+canal ORA_DISK_1: leyendo desde la parte de copia de seguridad C:\TLD\BACKUP\XE_20261025_2K55PL0U_84_1_1.BKP
+canal ORA_DISK_1: manejador de parte=C:\TLD\BACKUP\XE_20261025_2K55PL0U_84_1_1.BKP etiqueta=TAG20261025T185241
+canal ORA_DISK_1: parte 1 de la copia de seguridad restaurada
+canal ORA_DISK_1: validaci�n terminada, tiempo transcurrido: 00:01:55
+canal ORA_DISK_1: iniciando validaci�n del juego de copias de seguridad del archivo de datos
+canal ORA_DISK_1: leyendo desde la parte de copia de seguridad C:\TLD\BACKUP\XE_20261025_2L55PL3K_85_1_1.BKP
+canal ORA_DISK_1: manejador de parte=C:\TLD\BACKUP\XE_20261025_2L55PL3K_85_1_1.BKP etiqueta=TAG20261025T185241
+canal ORA_DISK_1: parte 1 de la copia de seguridad restaurada
+canal ORA_DISK_1: validaci�n terminada, tiempo transcurrido: 00:00:35
+Se ha finalizado restore a las 27/10/26
+
+RMAN>
+Empezando restore a las 27/10/26
+usando el canal ORA_DISK_1
+
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_59_1238784886.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_60_1238784886.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_61_1238784886.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_62_1238784886.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_63_1238784886.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_64_1238784886.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_65_1238784886.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_66_1238784886.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_67_1238784886.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_68_1238784886.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_69_1238784886.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_70_1238784886.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_71_1238784886.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_72_1238784886.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_73_1238784886.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_74_1238784886.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_75_1238784886.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_76_1238784886.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_77_1238784886.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_78_1238784886.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_79_1238784886.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_80_1238784886.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_81_1238784886.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_82_1238784886.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_83_1238784886.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_84_1238784886.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_85_1238784886.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_86_1238784886.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_87_1238784886.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_88_1238784886.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_89_1238784886.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_90_1238784886.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_91_1238784886.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_1_1246614616.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_2_1246614616.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_3_1246614616.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_4_1246614616.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_5_1246614616.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_6_1246614616.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_7_1246614616.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_8_1246614616.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_9_1246614616.ARC
+canal ORA_DISK_1: analizando archive log C:\ORADATA\MEX4\ARCHIVE\MEX4_1_10_1246614616.ARC
+canal ORA_DISK_1: iniciando validaci�n del juego de copias de seguridad de archive log
+canal ORA_DISK_1: leyendo desde la parte de copia de seguridad C:\TLD\BACKUP\XE_20261013_1S54Q7SA_60_1_1.BKP
+canal ORA_DISK_1: manejador de parte=C:\TLD\BACKUP\XE_20261013_1S54Q7SA_60_1_1.BKP etiqueta=TAG20261013T205849
+canal ORA_DISK_1: parte 1 de la copia de seguridad restaurada
+canal ORA_DISK_1: validaci�n terminada, tiempo transcurrido: 00:00:45
+Se ha finalizado restore a las 27/10/26
+
+RMAN>
+
+Recovery Manager terminado.

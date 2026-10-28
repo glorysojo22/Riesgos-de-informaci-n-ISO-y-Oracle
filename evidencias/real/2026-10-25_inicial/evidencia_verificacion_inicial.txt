@@ -1,0 +1,371 @@
+============================================================
+PT-00 Ambiente de pruebas
+Esperado: versión, contenedor XEPDB1 y paquetes disponibles
+============================================================
+
+BANNER_FULL
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
+Version 21.3.0.0.0
+
+
+1 fila seleccionada.
+
+
+CONTENEDOR
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+USUARIO
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FECHA_EJECUCION
+-------------------------------------
+XEPDB1
+AUDITOR_EXT
+25/10/26 03:50:27,100000000 PM -06:00
+
+
+1 fila seleccionada.
+
+
+OWNER
+--------------------------------------------------------------------------------------------------------------------------------
+PAQUETE_DISPONIBLE
+--------------------------------------------------------------------------------------------------------------------------------
+AUDSYS
+DBMS_AUDIT_MGMT
+
+SYS
+DBMS_PRIVILEGE_CAPTURE
+
+SYS
+DBMS_REDACT
+
+SYS
+DBMS_RLS
+
+SYS
+DBMS_TSDP_MANAGE
+
+
+5 filas seleccionadas.
+
+
+PARAMETER                                                        VALUE
+---------------------------------------------------------------- ----------------------------------------------------------------
+Unified Auditing                                                 FALSE
+
+1 fila seleccionada.
+
+============================================================
+PT-01 (CO-01, A5.12) Columnas sensibles etiquetadas
+Esperado: coinciden con el inventario documentado
+============================================================
+
+OWNER
+--------------------------------------------------------------------------------------------------------------------------------
+TABLE_NAME
+--------------------------------------------------------------------------------------------------------------------------------
+COLUMN_NAME
+--------------------------------------------------------------------------------------------------------------------------------
+RRHH
+EMPLEADOS
+CEDULA
+
+RRHH
+EMPLEADOS
+SALARIO
+
+
+2 filas seleccionadas.
+
+============================================================
+PT-02 (CO-02, A5.15) Privilegios directos a usuarios en esquemas sensibles
+Esperado: 0 filas
+============================================================
+
+0 filas seleccionadas.
+
+============================================================
+PT-03 (CO-03, A5.16) Cuentas abiertas sin acceso en 90 días
+Esperado: 0 filas (además, cruzar DBA_USERS con la planilla)
+============================================================
+
+USERNAME                                                                                                                         ACCOUNT_STATUS                   LAST_LOGIN
+-------------------------------------------------------------------------------------------------------------------------------- -------------------------------- ---------------------------------------
+PDBADMIN                                                                                                                         OPEN
+PRUEBA                                                                                                                           OPEN
+PRUEBA_TI                                                                                                                        OPEN
+PRUEBA_CONTA                                                                                                                     OPEN
+
+4 filas seleccionadas.
+
+============================================================
+PT-04 (CO-04, A5.17) Cuentas abiertas con contraseña por defecto
+Esperado: 0 filas
+============================================================
+
+USERNAME                                                                                                                         ACCOUNT_STATUS
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------
+HR                                                                                                                               OPEN
+
+1 fila seleccionada.
+
+============================================================
+PT-05 (CO-05, A5.18) Capturas de privilegios y privilegios no usados
+Esperado: al menos una captura; no usados revocados o justificados
+============================================================
+
+NAME                                                                                                                             TYPE             E
+-------------------------------------------------------------------------------------------------------------------------------- ---------------- -
+ORA$DEPENDENCY                                                                                                                   DATABASE         N
+
+1 fila seleccionada.
+
+
+0 filas seleccionadas.
+
+============================================================
+PT-06 (CO-06, A5.33) Separación entre la administración de la base y la auditoría
+Esperado: 0 filas en la primera consulta, y al menos un responsable de auditoría
+en la segunda que no tenga el rol DBA
+============================================================
+
+0 filas seleccionadas.
+
+
+0 filas seleccionadas.
+
+============================================================
+PT-07 (CO-07, A8.2) Privilegios elevados
+Esperado: solo cuentas de la lista autorizada
+============================================================
+
+GRANTEE
+--------------------------------------------------------------------------------------------------------------------------------
+HR
+SYS
+SYSTEM
+
+3 filas seleccionadas.
+
+
+0 filas seleccionadas.
+
+
+USERNAME                                                                                                                         SYSDB SYSOP
+-------------------------------------------------------------------------------------------------------------------------------- ----- -----
+SYS                                                                                                                              TRUE  TRUE
+
+1 fila seleccionada.
+
+============================================================
+PT-08 (CO-08, A8.3) Políticas VPD en esquemas sensibles
+Esperado: todas con ENABLE = 'YES'
+============================================================
+
+0 filas seleccionadas.
+
+============================================================
+PT-09 (CO-09, A8.5) Política de contraseñas por perfil
+Esperado: FAILED_LOGIN_ATTEMPTS <= 5, PASSWORD_LIFE_TIME <= 90,
+función de verificación definida; 0 cuentas con perfil DEFAULT
+============================================================
+
+PROFILE                                                                                                                          RESOURCE_NAME
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------
+LIMIT
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+DEFAULT                                                                                                                          FAILED_LOGIN_ATTEMPTS
+10
+
+DEFAULT                                                                                                                          PASSWORD_LIFE_TIME
+UNLIMITED
+
+DEFAULT                                                                                                                          PASSWORD_LOCK_TIME
+1
+
+DEFAULT                                                                                                                          PASSWORD_VERIFY_FUNCTION
+NULL
+
+ORA_CIS_PROFILE                                                                                                                  FAILED_LOGIN_ATTEMPTS
+5
+
+ORA_CIS_PROFILE                                                                                                                  PASSWORD_LIFE_TIME
+90
+
+ORA_CIS_PROFILE                                                                                                                  PASSWORD_LOCK_TIME
+1
+
+ORA_CIS_PROFILE                                                                                                                  PASSWORD_VERIFY_FUNCTION
+ORA12C_VERIFY_FUNCTION
+
+ORA_STIG_PROFILE                                                                                                                 FAILED_LOGIN_ATTEMPTS
+3
+
+ORA_STIG_PROFILE                                                                                                                 PASSWORD_LIFE_TIME
+35
+
+ORA_STIG_PROFILE                                                                                                                 PASSWORD_LOCK_TIME
+UNLIMITED
+
+ORA_STIG_PROFILE                                                                                                                 PASSWORD_VERIFY_FUNCTION
+ORA12C_STIG_VERIFY_FUNCTION
+
+
+12 filas seleccionadas.
+
+
+USERNAME
+--------------------------------------------------------------------------------------------------------------------------------
+PDBADMIN
+MEX4
+HR
+MONITOR_USER
+TLD_USER
+AUDITOR_EXT
+UNIV_DB
+RRHH
+PRUEBA_TI
+PRUEBA_CONTA
+PRUEBA
+
+11 filas seleccionadas.
+
+============================================================
+PT-10 (CO-10, A8.10) Objetos de esquemas sensibles en la papelera
+Esperado: 0 filas. Complementar en RMAN con: SHOW RETENTION POLICY
+============================================================
+
+0 filas seleccionadas.
+
+============================================================
+PT-11 (CO-11, A8.11) Columnas sensibles sin política de redacción
+Esperado: 0 filas
+============================================================
+
+OWNER
+--------------------------------------------------------------------------------------------------------------------------------
+TABLE_NAME
+--------------------------------------------------------------------------------------------------------------------------------
+COLUMN_NAME
+--------------------------------------------------------------------------------------------------------------------------------
+RRHH
+EMPLEADOS
+CEDULA
+
+RRHH
+EMPLEADOS
+SALARIO
+
+
+2 filas seleccionadas.
+
+
+0 filas seleccionadas.
+
+============================================================
+PT-12 (CO-12, A8.12) Keystore, tablespaces cifrados y roles de exportación
+Esperado: STATUS = OPEN; ENCRYPTED = YES; roles solo en cuentas autorizadas
+============================================================
+
+WRL_TYPE             STATUS                         WALLET_TYPE
+-------------------- ------------------------------ --------------------
+FILE                 NOT_AVAILABLE                  UNKNOWN
+
+1 fila seleccionada.
+
+
+TABLESPACE_NAME                ENC
+------------------------------ ---
+USERS                          NO
+TS_DIM                         NO
+TS_REL                         NO
+TS_FACT                        NO
+TS_IDX                         NO
+MEX4_A1                        NO
+MEX4_A2                        NO
+MEX4_A3                        NO
+MEX4_IPK                       NO
+MEX4_IFK                       NO
+TBS_PRUEBA                     NO
+TBS_DISCO                      NO
+
+12 filas seleccionadas.
+
+
+GRANTEE
+--------------------------------------------------------------------------------------------------------------------------------
+GRANTED_ROLE
+--------------------------------------------------------------------------------------------------------------------------------
+HR
+DBA
+
+
+1 fila seleccionada.
+
+============================================================
+PT-13 (CO-13, A8.13) Modo de archivado, último respaldo y piezas sin cifrar
+Esperado: ARCHIVELOG; respaldo de menos de 24 h; 0 piezas sin cifrar
+============================================================
+
+LOG_MODE
+------------
+ARCHIVELOG
+
+1 fila seleccionada.
+
+
+ULTIMO_R
+--------
+
+
+1 fila seleccionada.
+
+
+PIEZAS_SIN_CIFRAR
+-----------------
+               21
+
+1 fila seleccionada.
+
+============================================================
+PT-14 (CO-14, A8.15) Políticas de auditoría habilitadas y eventos recientes
+Esperado: políticas de inicios fallidos y de tablas sensibles; eventos en 7 días
+============================================================
+
+POLICY_NAME                                                                                                                      ENABLED_OPTION
+-------------------------------------------------------------------------------------------------------------------------------- ---------------
+ENTITY_NAME
+--------------------------------------------------------------------------------------------------------------------------------
+ORA_SECURECONFIG                                                                                                                 BY USER
+ALL USERS
+
+ORA_LOGON_FAILURES                                                                                                               BY USER
+ALL USERS
+
+
+2 filas seleccionadas.
+
+
+ACTION_NAME                                                         EVENTOS
+---------------------------------------------------------------- ----------
+CREATE USER                                                               5
+GRANT                                                                     3
+DROP USER                                                                 1
+CREATE TABLE                                                              1
+
+4 filas seleccionadas.
+
+============================================================
+PT-15 (CO-15, A8.20) Cifrado de la conexión actual
+Esperado: aparece un servicio de cifrado (por ejemplo AES256)
+Además revisar sqlnet.ora: SQLNET.ENCRYPTION_SERVER = REQUIRED,
+TCP.VALIDNODE_CHECKING = YES, TCP.INVITED_NODES
+============================================================
+
+NETWORK_SERVICE_BANNER
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Windows NT TCP/IP NT Protocol Adapter for 64-bit Windows: Version 21.0.0.0.0 - Production
+Encryption service for 64-bit Windows: Version 21.0.1.0.0 - Production
+Crypto-checksumming service for 64-bit Windows: Version 21.0.1.0.0 - Production
+
+3 filas seleccionadas.

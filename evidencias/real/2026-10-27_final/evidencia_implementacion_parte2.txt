@@ -1,0 +1,175 @@
+CONTENEDOR
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+USUARIO
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FECHA_IMPLEMENTACION
+-------------------------------------
+XEPDB1
+SYSTEM
+25/10/26 06:47:00,211000000 PM -06:00
+
+
+1 fila seleccionada.
+
+============================================================
+[A5.33 / A8.2] Crear ADMIN_BD (DBA operativo) y AUDITOR_SEG (auditoría)
+============================================================
+Procedimiento PL/SQL terminado correctamente.
+
+User ADMIN_BD creado.
+
+
+Grant correcto.
+
+Procedimiento PL/SQL terminado correctamente.
+
+User AUDITOR_SEG creado.
+
+
+Grant correcto.
+
+ADMIN_BD y AUDITOR_SEG creadas.
+
+Procedimiento PL/SQL terminado correctamente.
+============================================================
+[A8.15 / A5.33] Políticas de auditoría (las crea AUDITOR_SEG, no el DBA)
+============================================================
+Conectado.
+
+USUARIO_QUE_CREA_LA_POLITICA
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+AUDITOR_SEG
+
+1 fila seleccionada.
+
+Política POL_RRHH_LECTURA habilitada.
+Política ORA_LOGON_FAILURES habilitada.
+
+Procedimiento PL/SQL terminado correctamente.
+
+POLICY_NAME                                                                                                                      ENABLED_OPTION
+-------------------------------------------------------------------------------------------------------------------------------- ---------------
+ENTITY_NAME                                                                                                                      SUC FAI
+-------------------------------------------------------------------------------------------------------------------------------- --- ---
+ORA_LOGON_FAILURES                                                                                                               BY USER
+ALL USERS                                                                                                                        NO  YES
+
+POL_RRHH_LECTURA                                                                                                                 BY USER
+ALL USERS                                                                                                                        YES YES
+
+
+2 filas seleccionadas.
+
+Conectado.
+============================================================
+Resumen de lo implementado (04 + 04b)
+============================================================
+
+USERNAME
+--------------------------------------------------------------------------------------------------------------------------------
+PROFILE                                                                                                                          ACCOUNT_STATUS
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------
+ADMIN_BD
+PERFIL_FUNCIONARIO                                                                                                               OPEN
+
+AUDITOR_EXT
+PERFIL_FUNCIONARIO                                                                                                               OPEN
+
+AUDITOR_SEG
+PERFIL_FUNCIONARIO                                                                                                               OPEN
+
+HR
+PERFIL_FUNCIONARIO                                                                                                               LOCKED
+
+MEX4
+PERFIL_FUNCIONARIO                                                                                                               OPEN
+
+MONITOR_USER
+PERFIL_FUNCIONARIO                                                                                                               OPEN
+
+PDBADMIN
+PERFIL_FUNCIONARIO                                                                                                               LOCKED
+
+PRUEBA
+PERFIL_FUNCIONARIO                                                                                                               LOCKED
+
+PRUEBA_CONTA
+PERFIL_FUNCIONARIO                                                                                                               OPEN
+
+PRUEBA_TI
+PERFIL_FUNCIONARIO                                                                                                               OPEN
+
+RRHH
+DEFAULT                                                                                                                          OPEN
+
+TLD_USER
+PERFIL_FUNCIONARIO                                                                                                               OPEN
+
+UNIV_DB
+PERFIL_FUNCIONARIO                                                                                                               OPEN
+
+
+13 filas seleccionadas.
+
+
+GRANTEE
+--------------------------------------------------------------------------------------------------------------------------------
+GRANTED_ROLE
+--------------------------------------------------------------------------------------------------------------------------------
+AUDITOR_SEG
+AUDIT_ADMIN
+
+SYSTEM
+DBA
+
+ADMIN_BD
+ROL_DBA_OPERATIVO
+
+SYSTEM
+ROL_DBA_OPERATIVO
+
+SYSTEM
+ROL_RRHH
+
+
+5 filas seleccionadas.
+
+
+OBJECT_OWNER
+--------------------------------------------------------------------------------------------------------------------------------
+OBJECT_NAME
+--------------------------------------------------------------------------------------------------------------------------------
+POLICY_NAME                                                                                                                      ENA
+-------------------------------------------------------------------------------------------------------------------------------- ---
+RRHH
+EMPLEADOS
+PF_DEPARTAMENTO                                                                                                                  YES
+
+
+1 fila seleccionada.
+
+
+OBJECT_OWNER
+--------------------------------------------------------------------------------------------------------------------------------
+OBJECT_NAME
+--------------------------------------------------------------------------------------------------------------------------------
+COLUMN_NAME                                                                                                                      FUNCTION_TYPE
+-------------------------------------------------------------------------------------------------------------------------------- ---------------------------
+RRHH
+EMPLEADOS
+SALARIO                                                                                                                          FULL REDACTION
+
+RRHH
+EMPLEADOS
+CEDULA                                                                                                                           REGEXP REDACTION
+
+
+2 filas seleccionadas.
+
+
+NAME                                                                                                                             TYPE             E
+-------------------------------------------------------------------------------------------------------------------------------- ---------------- -
+CAP_REVISION                                                                                                                     DATABASE         Y
+ORA$DEPENDENCY                                                                                                                   DATABASE         N
+
+2 filas seleccionadas.

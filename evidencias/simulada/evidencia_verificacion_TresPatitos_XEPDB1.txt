@@ -1,0 +1,308 @@
+*** SIMULACIÓN ***  Resultados generados para fines académicos. La empresa Tres Patitos es ficticia
+y estos datos no provienen de la ejecución real de los scripts.
+
+SQL> @01_verificacion_controles.sql
+Conectado a: Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
+PDB: XEPDB1   Usuario: AUDITOR_EXT
+
+============================================================
+PT-00 Ambiente de pruebas
+Esperado: versión, contenedor y paquetes disponibles
+============================================================
+BANNER_FULL                                                                           
+--------------------------------------------------------------------------------------
+Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production Version 21.3.0.0.0
+
+1 fila seleccionada.
+
+CONTENEDOR USUARIO     FECHA_EJECUCION                
+---------- ----------- -------------------------------
+XEPDB1     AUDITOR_EXT 23/10/26 10:15:42,000000 -06:00
+
+1 fila seleccionada.
+
+PAQUETE_DISPONIBLE    
+----------------------
+DBMS_AUDIT_MGMT       
+DBMS_PRIVILEGE_CAPTURE
+DBMS_REDACT           
+DBMS_RLS              
+DBMS_TSDP_MANAGE      
+
+5 filas seleccionadas.
+
+PARAMETER        VALUE
+---------------- -----
+Unified Auditing TRUE 
+
+1 fila seleccionada.
+
+
+============================================================
+PT-01 (CO-01, A5.12) Columnas sensibles etiquetadas
+Esperado: coinciden con el inventario documentado (9 columnas)
+============================================================
+OWNER TABLE_NAME COLUMN_NAME
+----- ---------- -----------
+FIN   CLIENTES   CEDULA     
+FIN   CLIENTES   CORREO     
+FIN   PAGOS      CUENTA_IBAN
+RRHH  EMPLEADOS  CEDULA     
+RRHH  EMPLEADOS  SALARIO    
+RRHH  PLANILLA   MONTO_NETO 
+
+6 filas seleccionadas.
+
+Hallazgo: el inventario documentado lista 9 columnas sensibles; faltan por etiquetar
+FIN.CLIENTES.TELEFONO, FIN.PAGOS.TARJETA y RRHH.EMPLEADOS.DIRECCION.
+
+============================================================
+PT-02 (CO-02, A5.15) Privilegios directos a usuarios en esquemas sensibles
+Esperado: 0 filas
+============================================================
+GRANTEE      OWNER TABLE_NAME PRIVILEGE
+------------ ----- ---------- ---------
+JPEREZ       RRHH  EMPLEADOS  SELECT   
+MSOLANO      FIN   PAGOS      SELECT   
+MSOLANO      FIN   PAGOS      UPDATE   
+APP_REPORTES RRHH  PLANILLA   SELECT   
+
+4 filas seleccionadas.
+
+
+============================================================
+PT-03 (CO-03, A5.16) Cuentas abiertas sin acceso en 90 días
+Esperado: 0 filas
+============================================================
+USERNAME     ACCOUNT_STATUS LAST_LOGIN                        
+------------ -------------- ----------------------------------
+CVARGAS      OPEN           02/05/26 08:14:10,000000000 -06:00
+TEMP_SOPORTE OPEN                                             
+
+2 filas seleccionadas.
+
+Cruce con la planilla: CVARGAS salió de la empresa el 30/04/2026; TEMP_SOPORTE es una cuenta genérica.
+
+============================================================
+PT-04 (CO-04, A5.17) Cuentas abiertas con contraseña por defecto
+Esperado: 0 filas
+============================================================
+USERNAME ACCOUNT_STATUS
+-------- --------------
+
+ninguna fila seleccionada
+
+
+============================================================
+PT-05 (CO-05, A5.18) Capturas de privilegios y privilegios no usados
+Esperado: al menos una captura; acta < 90 días
+============================================================
+NAME TYPE ENABLED
+---- ---- -------
+
+ninguna fila seleccionada
+
+USERNAME SYS_PRIV OBJ_PRIV OBJECT_OWNER OBJECT_NAME
+-------- -------- -------- ------------ -----------
+
+ninguna fila seleccionada
+
+Hallazgo: no existe ninguna captura de privilegios ni acta de revisión de accesos.
+
+============================================================
+PT-06 (CO-06, A5.33) Usuarios con DBA y AUDIT_ADMIN a la vez
+Esperado: 0 filas
+============================================================
+GRANTEE 
+--------
+ADMIN_BD
+
+1 fila seleccionada.
+
+
+============================================================
+PT-07 (CO-07, A8.2) Privilegios elevados
+Esperado: solo cuentas de la lista autorizada (SYSTEM, ADMIN_BD)
+============================================================
+GRANTEE  
+---------
+ADMIN_BD 
+SOPORTE01
+SYSTEM   
+
+3 filas seleccionadas.
+
+GRANTEE      PRIVILEGE       
+------------ ----------------
+APP_REPORTES SELECT ANY TABLE
+
+1 fila seleccionada.
+
+USERNAME SYSDBA SYSOPER
+-------- ------ -------
+SYS      TRUE   TRUE   
+
+1 fila seleccionada.
+
+Hallazgo: SOPORTE01 (rol DBA) y APP_REPORTES (SELECT ANY TABLE) no están en la lista autorizada.
+
+============================================================
+PT-08 (CO-08, A8.3) Políticas VPD en esquemas sensibles
+Esperado: todas con ENABLE = 'YES'
+============================================================
+OBJECT_OWNER OBJECT_NAME POLICY_NAME     ENABLE
+------------ ----------- --------------- ------
+RRHH         EMPLEADOS   PF_DEPARTAMENTO YES   
+FIN          PAGOS       PF_SUCURSAL     YES   
+
+2 filas seleccionadas.
+
+
+============================================================
+PT-09 (CO-09, A8.5) Política de contraseñas por perfil
+Esperado: intentos <= 5, vigencia <= 90, función definida; 0 cuentas DEFAULT
+============================================================
+PROFILE            RESOURCE_NAME            LIMIT                        
+------------------ ------------------------ -----------------------------
+DEFAULT            FAILED_LOGIN_ATTEMPTS    10                           
+DEFAULT            PASSWORD_LIFE_TIME       180                          
+DEFAULT            PASSWORD_LOCK_TIME       1                            
+DEFAULT            PASSWORD_VERIFY_FUNCTION NULL                         
+PERFIL_FUNCIONARIO FAILED_LOGIN_ATTEMPTS    3                            
+PERFIL_FUNCIONARIO PASSWORD_LIFE_TIME       90                           
+PERFIL_FUNCIONARIO PASSWORD_LOCK_TIME       1                            
+PERFIL_FUNCIONARIO PASSWORD_VERIFY_FUNCTION ORA12C_STRONG_VERIFY_FUNCTION
+
+8 filas seleccionadas.
+
+USERNAME
+--------
+
+ninguna fila seleccionada
+
+
+============================================================
+PT-10 (CO-10, A8.10) Objetos de esquemas sensibles en la papelera
+Esperado: 0 filas; retención RMAN definida
+============================================================
+OWNER ORIGINAL_NAME DROPTIME           
+----- ------------- -------------------
+FIN   PAGOS_2024    2026-03-11:16:40:02
+FIN   CLIENTES_BK   2026-06-02:09:12:55
+FIN   TMP_TARJETAS  2026-08-19:14:05:31
+FIN   PAGOS_2025_Q1 2026-09-30:18:22:10
+
+4 filas seleccionadas.
+
+RMAN> SHOW RETENTION POLICY;
+CONFIGURE RETENTION POLICY TO RECOVERY WINDOW OF 14 DAYS;
+
+============================================================
+PT-11 (CO-11, A8.11) Columnas sensibles sin política de redacción
+Esperado: 0 filas
+============================================================
+OWNER TABLE_NAME COLUMN_NAME
+----- ---------- -----------
+FIN   CLIENTES   CORREO     
+FIN   PAGOS      CUENTA_IBAN
+
+2 filas seleccionadas.
+
+OBJECT_OWNER OBJECT_NAME POLICY_NAME   ENABLE
+------------ ----------- ------------- ------
+RRHH         EMPLEADOS   RED_EMPLEADOS YES   
+RRHH         PLANILLA    RED_PLANILLA  YES   
+FIN          CLIENTES    RED_CLIENTES  YES   
+
+3 filas seleccionadas.
+
+
+============================================================
+PT-12 (CO-12, A8.12) Keystore, tablespaces cifrados y roles de exportación
+Esperado: OPEN; ENCRYPTED = YES; roles autorizados
+============================================================
+WRL_TYPE STATUS WALLET_TYPE
+-------- ------ -----------
+FILE     OPEN   AUTOLOGIN  
+
+1 fila seleccionada.
+
+TABLESPACE_NAME ENCRYPTED
+--------------- ---------
+DATOS_FIN       YES      
+DATOS_RRHH      YES      
+USERS           YES      
+
+3 filas seleccionadas.
+
+GRANTEE  GRANTED_ROLE              
+-------- --------------------------
+ADMIN_BD DATAPUMP_EXP_FULL_DATABASE
+DBA      DATAPUMP_EXP_FULL_DATABASE
+DBA      EXP_FULL_DATABASE         
+
+3 filas seleccionadas.
+
+
+============================================================
+PT-13 (CO-13, A8.13) Modo de archivado, último respaldo y piezas sin cifrar
+Esperado: ARCHIVELOG; respaldo < 24 h; 0 sin cifrar
+============================================================
+LOG_MODE  
+----------
+ARCHIVELOG
+
+1 fila seleccionada.
+
+ULTIMO_RESPALDO  
+-----------------
+22/10/26 23:48:17
+
+1 fila seleccionada.
+
+PIEZAS_SIN_CIFRAR
+-----------------
+12               
+
+1 fila seleccionada.
+
+Hallazgo: 12 piezas de respaldo disponibles no están cifradas (respaldos anteriores a la activación de CONFIGURE ENCRYPTION).
+
+============================================================
+PT-14 (CO-14, A8.15) Políticas de auditoría habilitadas y eventos recientes
+Esperado: políticas activas; eventos en 7 días
+============================================================
+POLICY_NAME        ENABLED_OPTION ENTITY_NAME
+------------------ -------------- -----------
+ORA_LOGON_FAILURES BY USER        ALL USERS  
+POL_RRHH_LECTURA   BY USER        ALL USERS  
+POL_FIN_LECTURA    BY USER        ALL USERS  
+
+3 filas seleccionadas.
+
+ACTION_NAME EVENTOS
+----------- -------
+SELECT      1842   
+LOGON       611    
+UPDATE      97     
+LOGOFF      588    
+
+4 filas seleccionadas.
+
+
+============================================================
+PT-15 (CO-15, A8.20) Cifrado de la conexión actual
+Esperado: aparece un servicio de cifrado (por ejemplo AES256)
+============================================================
+NETWORK_SERVICE_BANNER                                                
+----------------------------------------------------------------------
+TCP/IP NT Protocol Adapter for Linux: Version 21.0.0.0.0 - Production 
+Encryption service for Linux: Version 21.0.0.0.0 - Production         
+Crypto-checksumming service for Linux: Version 21.0.0.0.0 - Production
+
+3 filas seleccionadas.
+
+Revisión de sqlnet.ora: no define SQLNET.ENCRYPTION_SERVER ni TCP.VALIDNODE_CHECKING.
+Hallazgo: no aparece ningún adaptador de cifrado activo (AES256); la conexión viaja sin cifrar.
+
+Fin de la verificación. Evidencia guardada en evidencia_verificacion.txt

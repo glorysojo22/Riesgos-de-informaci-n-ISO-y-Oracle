@@ -1,0 +1,106 @@
+*** SIMULACIÓN ***  Resultados generados para fines académicos. La empresa Tres Patitos es ficticia
+y estos datos no provienen de la ejecución real de los scripts.
+
+SQL> @03_pruebas_funcionales.sql
+PDB: XEPDB1
+
+============================================================
+PF-01 (A8.5) Bloqueo de la cuenta tras intentos fallidos
+Esperado: ORA-28000
+============================================================
+Usuario creado.
+Concesión terminada correctamente.
+ORA-01017: nombre de usuario/contraseña no válidos; conexión denegada
+ORA-01017: nombre de usuario/contraseña no válidos; conexión denegada
+ORA-01017: nombre de usuario/contraseña no válidos; conexión denegada
+ORA-28000: La cuenta está bloqueada.
+ORA-28000: La cuenta está bloqueada.
+Intento con la contraseña correcta:
+ORA-28000: La cuenta está bloqueada.
+Resultado: CUMPLE.
+
+============================================================
+PF-02 (A5.17) Rechazo de una contraseña débil
+Esperado: ORA-28003
+============================================================
+ORA-28003: falló la verificación de la contraseña especificada
+ORA-20000: password length less than 9 characters
+Resultado: CUMPLE.
+
+============================================================
+PF-03 (A5.15) Acceso a datos sensibles solo mediante rol
+Esperado: sin rol ORA-00942; con rol devuelve datos
+============================================================
+Conectado como PRUEBA_TI (sin rol)
+ORA-00942: la tabla o vista no existe
+
+Concesión terminada correctamente.
+Conectado como PRUEBA_TI (con ROL_RRHH)
+  COUNT(*)
+----------
+        17
+Resultado: CUMPLE. Sin el rol el acceso se rechaza; con el rol devuelve solo las filas que permite VPD.
+
+============================================================
+PF-04 (A8.11) Enmascaramiento de columnas sensibles
+Esperado: CEDULA y SALARIO redactados
+============================================================
+NOMBRE      CEDULA      SALARIO
+----------- ----------- -------
+Ana Rojas   *-****-1111 0      
+Luis Mora   *-****-2222 0      
+Carla Solis *-****-3333 0      
+
+3 filas seleccionadas.
+FIN.CLIENTES.CORREO y FIN.PAGOS.CUENTA_IBAN también se muestran redactados.
+Resultado: CUMPLE.
+
+============================================================
+PF-05 (A8.3) Filtrado de filas con VPD
+Esperado: cada usuario ve solo su departamento
+============================================================
+PRUEBA_TI
+DEPARTAMENTO FILAS
+------------ -----
+TI           17   
+
+1 fila seleccionada.
+PRUEBA_CONTA
+DEPARTAMENTO FILAS
+------------ -----
+CONTA        12   
+
+1 fila seleccionada.
+Resultado: CUMPLE.
+
+============================================================
+PF-06 (A8.15) La auditoría registra la lectura de datos sensibles
+Esperado: aparecen las lecturas de los usuarios de prueba
+============================================================
+EVENT_TIMESTAMP   DBUSERNAME   ACTION_NAME OBJECT_NAME
+----------------- ------------ ----------- -----------
+23/11/26 09:49:12 PRUEBA_CONTA SELECT      EMPLEADOS  
+23/11/26 09:48:57 PRUEBA_TI    SELECT      EMPLEADOS  
+23/11/26 09:48:30 PRUEBA_TI    SELECT      EMPLEADOS  
+
+3 filas seleccionadas.
+Resultado: CUMPLE.
+
+============================================================
+PF-07 (A5.33) Separación de funciones entre el DBA y la auditoría
+Esperado: ADMIN_BD: ORA-01031
+============================================================
+Paso 1: ADMIN_BD intenta crear una política de auditoría
+Política de auditoría creada.
+Resultado: NO CUMPLE. ADMIN_BD conserva AUDIT_ADMIN; el traspaso a la responsable de auditoría está pendiente.
+
+============================================================
+PF-08 (A8.13) Validación de restauración en RMAN
+Esperado: termina sin errores
+============================================================
+RMAN> RESTORE DATABASE VALIDATE;
+channel ORA_DISK_1: validation complete, elapsed time: 00:04:05
+Finished restore at 23-NOV-26
+RMAN> RESTORE ARCHIVELOG ALL VALIDATE;
+Finished restore at 23-NOV-26
+Resultado: CUMPLE (todas las piezas disponibles están cifradas).

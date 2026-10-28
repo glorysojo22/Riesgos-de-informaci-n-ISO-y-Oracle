@@ -1,0 +1,63 @@
+INFORME DE EVALUACIÓN DE CONTROLES DE CONFIDENCIALIDAD
+*** SIMULACIÓN ***  La empresa Tres Patitos es ficticia; los resultados son simulados.
+
+Evaluación:  E(Tres Patitos, XEPDB1, 23/10/2026)
+Motor:       Oracle Database 21c Express Edition
+Auditor:     Gloriana Sojo Pereira
+Cuenta:      AUDITOR_EXT (solo lectura)
+Scripts:     01_verificacion_controles.sql (PT-00 a PT-15), 03_pruebas_funcionales.sql (PF-01 a PF-07), PF-08 en RMAN
+
+1. RESULTADO
+   RC = 53,5 %   Semáforo: AMARILLO
+   5 controles cumplen por completo, 6 cumplen en parte y 4 no cumplen.
+   RC = (CS1·W1 + ... + CS15·W15) / (W1 + ... + W15); Rojo 0-30 %, Amarillo 30-70 %, Verde 70-100 %.
+
+2. RESULTADOS POR CONTROL
+   Control                                    Valor  Peso   Aporte
+   ---------------------------------------------------------------
+   CS1 A5.12 Clasificación de información       0,5    16    3,7 %
+      PT-01: 6 de 9 columnas sensibles del inventario están etiquetadas.
+   CS2 A5.15 Control de acceso                    0    16      0 %
+      PT-02: 4 privilegios directos (JPEREZ, MSOLANO, APP_REPORTES). PF-03: RRHH.EMPLEADOS es legible sin rol por un grant a PUBLIC.
+   CS3 A5.16 Gestión de identidades             0,5    15    3,5 %
+      PT-03: CVARGAS (exfuncionaria) y TEMP_SOPORTE (genérica) abiertas.
+   CS4 A5.17 Información de autenticación         1    15    6,9 %
+      PT-04: 0 filas. PF-02: ORA-28003, contraseña débil rechazada.
+   CS5 A5.18 Derechos de acceso                   0    16      0 %
+      PT-05: sin capturas de privilegios ni acta de revisión.
+   CS6 A5.33 Protección de registros              0    12      0 %
+      PT-06: ADMIN_BD tiene DBA y AUDIT_ADMIN. PF-07: el DBA creó una política.
+   CS7 A8.2 Derechos de acceso privilegiado     0,5    16    3,7 %
+      PT-07: SOPORTE01 con DBA y APP_REPORTES con SELECT ANY TABLE sin autorización.
+   CS8 A8.3 Restricción de acceso                 1    16    7,4 %
+      PT-08: 2 políticas VPD activas. PF-05: cada usuario ve su departamento.
+   CS9 A8.5 Autenticación segura                  1    15    6,9 %
+      PT-09: PERFIL_FUNCIONARIO cumple; 0 cuentas DEFAULT. PF-01: ORA-28000.
+   CS10 A8.10 Eliminación de información        0,5    10    2,3 %
+      PT-10: 4 objetos de FIN en la papelera; retención RMAN de 14 días.
+   CS11 A8.11 Enmascaramiento de datos          0,5    16    3,7 %
+      PT-11: 2 columnas sensibles sin redacción. PF-04: redacción en EMPLEADOS.
+   CS12 A8.12 Prevención de fuga de datos         1    16    7,4 %
+      PT-12: keystore OPEN; tablespaces cifrados; exportación solo en cuentas autorizadas.
+   CS13 A8.13 Respaldo de la información        0,5    10    2,3 %
+      PT-13: ARCHIVELOG, respaldo de 22/10 23:48, 12 piezas sin cifrar. PF-08: OK.
+   CS14 A8.15 Registro (logging)                  1    12    5,6 %
+      PT-14: 3 políticas activas, 3138 eventos en 7 días. PF-06: lecturas registradas.
+   CS15 A8.20 Seguridad de redes                  0    15      0 %
+      PT-15: sin adaptador de cifrado activo; sqlnet.ora sin parámetros de cifrado.
+   ---------------------------------------------------------------
+   Total                                              216   53,5 %
+
+3. HALLAZGOS PRIORITARIOS Y RECOMENDACIONES
+   a) CS2 A5.15 y CS7 A8.2 (R-CONF-01, crítico): privilegios directos, SELECT a PUBLIC sobre RRHH.EMPLEADOS,
+      SOPORTE01 con DBA y APP_REPORTES con SELECT ANY TABLE. -> Revocar y otorgar mediante roles por función.
+   b) CS5 A5.18: sin captura ni revisión de privilegios. -> DBMS_PRIVILEGE_CAPTURE y acta trimestral.
+   c) CS15 A8.20: conexiones sin cifrar. -> SQLNET.ENCRYPTION_SERVER = REQUIRED y TCP.VALIDNODE_CHECKING.
+   d) CS6 A5.33: ADMIN_BD con DBA y AUDIT_ADMIN. -> Asignar AUDIT_ADMIN a otra persona.
+   e) Cumplimiento parcial (CS1, CS3, CS10, CS11, CS13): completar clasificación y redacción, bloquear CVARGAS
+      y TEMP_SOPORTE, purgar la papelera de FIN y cifrar o eliminar las 12 piezas de respaldo antiguas.
+
+4. SIGUIENTE PASO (PHVA)
+   Corregir los hallazgos y repetir los scripts; registrar la nueva evaluación E(Tres Patitos, XEPDB1, t2).
+
+Anexos: evidencia_verificacion_TresPatitos_XEPDB1.txt, evidencia_funcional_TresPatitos_XEPDB1.txt, informe_evaluacion_TresPatitos_XEPDB1.pdf
